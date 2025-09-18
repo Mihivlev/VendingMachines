@@ -1,0 +1,146 @@
+﻿<Page x:Class="Desktop_VendingMachine.Pages.MainUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop_VendingMachine.Pages"
+      mc:Ignorable="d" Background="LightGray"
+      d:DesignHeight="815" d:DesignWidth="1200"
+      Title="MainUserPage">
+
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<Grid Background="#1d1d1d">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			
+			<TextBlock Text="ООО Торговые автоматы" HorizontalAlignment="Left" Margin="10" FontSize="25"/>
+			<TextBlock Text="Главная" FontSize="18" Foreground="Gray" Grid.Column="1" HorizontalAlignment="Right" Margin="10"/>
+		</Grid>
+
+		<Grid Grid.Row="1" Margin="45 10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Text="Личный кабинет, Главная" FontSize="30" Margin="0 10" Foreground="#1d1d1d" HorizontalAlignment="Left" Grid.ColumnSpan="3"/>
+
+			<Grid Margin="20" Grid.Row="1" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Эффективность сети" Background="#efefef" Padding="10" Foreground="#1d1d1d" TextAlignment="Left" FontSize="18"/>
+
+				<TextBlock Name="effNetwork" Grid.Row="1" VerticalAlignment="Bottom" Margin="20"/>
+			</Grid>
+
+			<Grid Margin="20" Grid.Row="1" Grid.Column="1" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Состояние сети" Background="#efefef" Padding="10" Foreground="#1d1d1d" TextAlignment="Left" FontSize="18"/>
+			</Grid>
+
+			<Grid Margin="20" Grid.Row="1" Grid.Column="2" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Сводка" Background="#efefef" Padding="10" Foreground="#1d1d1d" TextAlignment="Left" FontSize="18"/>
+
+				<TextBlock Text="Денег в ТА" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="1"/>
+				<TextBlock Text="27595 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="1"/>
+
+				<TextBlock Text="Сдача в ТА" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="2"/>
+				<TextBlock Text="12129 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="2"/>
+
+				<TextBlock Text="Выручка, сегодня" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="3"/>
+				<TextBlock Text="11810 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="3"/>
+
+				<TextBlock Text="Выручка, вчера" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="4"/>
+				<TextBlock Text="13360 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="4"/>
+
+				<TextBlock Text="Инкассировано, сегодня" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="5"/>
+				<TextBlock Text="8145 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="5"/>
+
+				<TextBlock Text="Инкассировано, вчера" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="6"/>
+				<TextBlock Text="9690 р." Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="6"/>
+
+				<TextBlock Text="Обслужено ТА, сег./вчера" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="7"/>
+				<TextBlock Text="2/2" Foreground="Gray" HorizontalAlignment="Right" Margin="10" Grid.Row="7"/>
+			</Grid>
+
+			<Grid Margin="20" Grid.Row="2" Grid.ColumnSpan="2" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Динамика продаж за последние 10 дней" Background="#efefef" Padding="10" Foreground="#1d1d1d" TextAlignment="Left" FontSize="18"/>
+			</Grid>
+
+			<ScrollViewer Margin="20" Grid.Row="2" Grid.Column="2" Background="White">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="2*"/>
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Text="29.01.25" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="1"/>
+					<TextBlock Text="Терминалы KitPos получили эквайринг от Сбера" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1"/>
+
+					<TextBlock Text="31.12.24" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="2"/>
+					<TextBlock Text="Новогоднее поздравление от KiT Vending / Kit Shop" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2"/>
+
+					<TextBlock Text="28.12.24" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="3"/>
+					<TextBlock Text="Ставки НДС 5% и 7% УСН" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="3"/>
+
+					<TextBlock Text="04.12.24" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="4"/>
+					<TextBlock Text="Релиз новаой CRM-системы Kit Shop" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4"/>
+
+					<TextBlock Text="27.11.24" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="6"/>
+					<TextBlock Text="Новые модели снековых автоматов от Kit Vending" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="6"/>
+
+					<TextBlock Text="20.11.24" Foreground="Gray" HorizontalAlignment="Left" Margin="10" Grid.Row="7"/>
+					<TextBlock Text="Получение сертификата PCI DSS 4.0.1" Foreground="Gray" HorizontalAlignment="Left" Margin="10" TextDecorations="Underline" TextWrapping="Wrap" Grid.Column="1" Grid.Row="7"/>
+				</Grid>
+			</ScrollViewer>
+		</Grid>
+
+	</Grid>
+</Page>

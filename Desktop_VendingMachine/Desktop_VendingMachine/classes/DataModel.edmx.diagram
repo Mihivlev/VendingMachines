@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d2e8867c0de04c0ea6fb4e95fcef7f83" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Companies" Width="1.5" PointX="3.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.CriticalThresholdTemplate" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Maintenance" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.ModelsMachine" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.NotificationTemplates" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Operators" Width="1.5" PointX="3.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.PaymentTypes" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Products" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Roles" Width="1.5" PointX="1.5" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Sales" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.ServicePriorities" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Statuses" Width="1.5" PointX="3.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Timezones" Width="1.5" PointX="3.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Users" Width="1.5" PointX="3.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.VendingMachines" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.WorkModes" Width="1.5" PointX="3.75" PointY="34.125" IsExpanded="true" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_CriticalThresholdTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Maintenance_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Maintenance_VendingMachines" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_ModelsMachine" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_NotificationTemplates" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Operators" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Sales_PaymentTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Products_VendingMachines" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Sales_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_ServicePriorities" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Timezones" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Users2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Users3" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_WorkModes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_VendingMachinesModel.VM_Payments" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

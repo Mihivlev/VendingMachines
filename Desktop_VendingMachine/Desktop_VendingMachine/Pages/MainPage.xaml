@@ -1,0 +1,116 @@
+﻿<Page x:Class="Desktop_VendingMachine.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop_VendingMachine.Pages"
+      mc:Ignorable="d" Background="LightGray"
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="MainPage">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="3*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="85"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="white" Grid.ColumnSpan="2">
+			<Image Source="/Resources/Logo.png" HorizontalAlignment="Left"/>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<Image Source="{Binding Photo}"/>
+				<StackPanel VerticalAlignment="Center" Margin="10">
+					<TextBlock Text="{Binding full_name}" Foreground="#1d1d1d"/>
+					<TextBlock Text="{Binding Roles.role}" Foreground="Gray"/>
+				</StackPanel>
+				<Image Source="/Resources/icons/black/angle-down.png" Margin="32" MouseDown="profileClick"/>
+			</StackPanel>
+		</Grid>
+
+		<Border Background="#22252c" Grid.Row="1">
+			<Grid VerticalAlignment="Top">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text="Навигация" FontSize="25" Margin="10" HorizontalAlignment="Left" Foreground="WhiteSmoke"/>
+				<Border Background="#1d1d1d" HorizontalAlignment="Right" Width="60" Height="60">
+					<TextBlock Text="=" FontSize="40" Margin="0 0 0 12" Foreground="WhiteSmoke"/>
+				</Border>
+
+				<StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" MouseDown="ToMain">
+					<Image Source="/Resources/icons/white/search.png" Margin="10"/>
+					<TextBlock Text="Главная" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
+				</StackPanel>
+
+				<StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
+					<Image Source="/Resources/icons/white/desktop.png" Margin="10"/>
+					<TextBlock Text="Монитор ТА" FontSize="20" Margin="5" Foreground="WhiteSmoke" MouseDown="ToMonitor"/>
+				</StackPanel>
+
+				<StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal">
+					<Image Source="/Resources/icons/white/file-text.png" Margin="10"/>
+					<TextBlock Text="Детальные отчеты" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
+				</StackPanel>
+				<Image Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="3" HorizontalAlignment="Right"/>
+
+				<StackPanel Grid.Row="4" HorizontalAlignment="Left" Orientation="Horizontal">
+					<Image Source="/Resources/icons/white/cart-arrow-down.png" Margin="10"/>
+					<TextBlock Text="Учет ТМЦ" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
+				</StackPanel>
+				<Image Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="4" HorizontalAlignment="Right"/>
+
+				<StackPanel Grid.Row="5" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" MouseDown="blockAdmin">
+					<Image Source="/Resources/icons/white/cogs.png" Margin="10"/>
+					<TextBlock Text="Администрирование" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
+				</StackPanel>
+				<Image x:Name="ImgAdminBlock" Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="5" HorizontalAlignment="Right" MouseDown="blockAdmin"/>
+
+				<Grid Name="BlockAdminGrid" Grid.Row="6" Background="#1a1a1a" Visibility="Hidden">
+					<StackPanel Margin="0 30 0 70" HorizontalAlignment="Center">
+						<TextBlock Text="Торговые автоматы" HorizontalAlignment="Left" FontSize="18" Margin="3" MouseDown="ToVendingMachines" Foreground="WhiteSmoke"/>
+						<TextBlock Text="Компании" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
+						<TextBlock Text="Пользователи" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
+						<TextBlock Text="Модемы" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
+						<TextBlock Text="Дополнительные" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
+					</StackPanel>
+				</Grid>
+			</Grid>
+		</Border>
+
+		<Frame Name="UserFrame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"/>
+
+		<Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" Width="370" Visibility="Hidden" Name="profileGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+
+			<Rectangle Fill="Gray" Height="0.5" VerticalAlignment="Top" Margin="10 0 10 0"/>
+
+			<StackPanel Orientation="Horizontal" Margin="10">
+				<Image Source="/Resources/icons/black/address-card-o.png" Margin="5"/>
+				<TextBlock Text="Мой прифиль" FontSize="15" Foreground="Gray"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
+				<Image Source="/Resources/icons/black/archive.png" Margin="5"/>
+				<TextBlock Text="Мои сессии" FontSize="15" Foreground="Gray"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="10" Grid.Row="2">
+				<Image Source="/Resources/icons/black/exit.png" Margin="5"/>
+				<TextBlock Text="Выход" FontSize="15" Foreground="Gray"/>
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Page>
