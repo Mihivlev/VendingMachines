@@ -83,7 +83,13 @@
 
 			<DataGrid Name="DGVendingMachines" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" RowBackground="White" AlternatingRowBackground="#efefef" RowHeaderWidth="0" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Transparent" Margin="10 0 10 0" Background="Transparent" BorderThickness="0">
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+					<DataGridTemplateColumn Header="ID" Width="*">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding serial_number}"/>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
 					<DataGridTemplateColumn Header="Название автомата"  Width="*">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
@@ -108,7 +114,7 @@
 					<DataGridTemplateColumn Header="Модем" Width="0.6*">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<TextBlock Text="{Binding serial_number}"/>
+								<TextBlock Text="{Binding modem}"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
 					</DataGridTemplateColumn>

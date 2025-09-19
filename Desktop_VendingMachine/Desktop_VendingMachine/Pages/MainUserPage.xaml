@@ -46,7 +46,10 @@
 
 				<TextBlock Text="Эффективность сети" Background="#efefef" Padding="10" Foreground="#1d1d1d" TextAlignment="Left" FontSize="18"/>
 
-				<TextBlock Name="effNetwork" Grid.Row="1" VerticalAlignment="Bottom" Margin="20"/>
+				<StackPanel Grid.Row="1" VerticalAlignment="Center">
+					<ProgressBar Name="PBeff" Height="70" Margin="10" Minimum="0" Maximum="100"/>
+					<TextBlock Name="effNetwork" VerticalAlignment="Bottom" Margin="20"/>
+				</StackPanel>
 			</Grid>
 
 			<Grid Margin="20" Grid.Row="1" Grid.Column="1" Background="White">

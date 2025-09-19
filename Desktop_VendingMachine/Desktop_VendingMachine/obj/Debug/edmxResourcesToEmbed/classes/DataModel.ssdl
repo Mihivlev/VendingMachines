@@ -164,6 +164,9 @@
     <Property Name="manager" Type="nvarchar" MaxLength="50" />
     <Property Name="engineer" Type="nvarchar" MaxLength="50" />
     <Property Name="technician" Type="nvarchar" MaxLength="50" />
+    <Property Name="monets" Type="int" />
+    <Property Name="kopurs" Type="int" />
+    <Property Name="sdacha" Type="int" />
   </EntityType>
   <EntityType Name="VM_Payments">
     <Key>

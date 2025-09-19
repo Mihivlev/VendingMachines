@@ -179,6 +179,9 @@
           <ScalarProperty Name="manager" ColumnName="manager" />
           <ScalarProperty Name="engineer" ColumnName="engineer" />
           <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="monets" ColumnName="monets" />
+          <ScalarProperty Name="kopurs" ColumnName="kopurs" />
+          <ScalarProperty Name="sdacha" ColumnName="sdacha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

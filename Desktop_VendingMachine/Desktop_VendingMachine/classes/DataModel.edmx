@@ -169,6 +169,9 @@
           <Property Name="manager" Type="nvarchar" MaxLength="50" />
           <Property Name="engineer" Type="nvarchar" MaxLength="50" />
           <Property Name="technician" Type="nvarchar" MaxLength="50" />
+          <Property Name="monets" Type="int" />
+          <Property Name="kopurs" Type="int" />
+          <Property Name="sdacha" Type="int" />
         </EntityType>
         <EntityType Name="VM_Payments">
           <Key>
@@ -767,6 +770,9 @@
           <Property Name="manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="engineer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="technician" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="monets" Type="Int32" />
+          <Property Name="kopurs" Type="Int32" />
+          <Property Name="sdacha" Type="Int32" />
           <NavigationProperty Name="Companies" Relationship="Self.FK_VendingMachines_Companies" FromRole="VendingMachines" ToRole="Companies" />
           <NavigationProperty Name="CriticalThresholdTemplate" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="VendingMachines" ToRole="CriticalThresholdTemplate" />
           <NavigationProperty Name="Maintenance" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="VendingMachines" ToRole="Maintenance" />
@@ -1337,6 +1343,9 @@
                 <ScalarProperty Name="manager" ColumnName="manager" />
                 <ScalarProperty Name="engineer" ColumnName="engineer" />
                 <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="monets" ColumnName="monets" />
+                <ScalarProperty Name="kopurs" ColumnName="kopurs" />
+                <ScalarProperty Name="sdacha" ColumnName="sdacha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

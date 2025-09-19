@@ -51,6 +51,9 @@ namespace Desktop_VendingMachine.classes
         public string manager { get; set; }
         public string engineer { get; set; }
         public string technician { get; set; }
+        public Nullable<int> monets { get; set; }
+        public Nullable<int> kopurs { get; set; }
+        public Nullable<int> sdacha { get; set; }
     
         public virtual Companies Companies { get; set; }
         public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }

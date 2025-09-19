@@ -29,6 +29,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="auto"/>
 				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
@@ -56,7 +57,7 @@
 							<Ellipse Fill="Red" Width="15" Height="15"/>
 						</Border>
 						<Border Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7">
-							<Ellipse Fill="LightBlue" Width="15" Height="15"/>
+							<Ellipse Fill="#00bbff" Width="15" Height="15"/>
 						</Border>
 					</StackPanel>
 				</StackPanel>
@@ -109,62 +110,131 @@
 				</StackPanel>
 			</Grid>
 
-			<DataGrid Name="DGVendingMachines" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" RowBackground="White" AlternatingRowBackground="#efefef" RowHeaderWidth="0" HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="Transparent" Margin="10 0 10 0" Background="Transparent" BorderThickness="0">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
-					<DataGridTemplateColumn Header="Название автомата"  Width="*">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding name}" Foreground="#00bbff"/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-					<DataGridTemplateColumn Header="Модель" Width="*">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding ModelsMachine.Model}"/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-					<DataGridTextColumn Header="Компания" Binding="{Binding Companies.company}" Width="*">
-						<DataGridTextColumn.CellStyle>
-							<Style TargetType="DataGridCell">
-								<Setter Property="Foreground" Value="#00bbff"/>
-							</Style>
-						</DataGridTextColumn.CellStyle>
-					</DataGridTextColumn>
-					<DataGridTemplateColumn Header="Модем" Width="0.6*">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding serial_number}"/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-					<DataGridTextColumn Header="Адресс / Место" Binding="{Binding location}" Width="*"/>
-					<DataGridTemplateColumn Width="0.6*">
-						<DataGridTemplateColumn.Header>
-							<TextBlock Text="в работе с"/>
-						</DataGridTemplateColumn.Header>
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<TextBlock Text="{Binding install_date, StringFormat=dd.mm.yyyy}"/>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-					<DataGridTemplateColumn Header="Действия" Width="0.7*">
-						<DataGridTemplateColumn.CellTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-									<Image Source="/Resources/icons/blue/pencil.png" Width="20" Margin="2"/>
-									<Image Source="/Resources/icons/blue/trash.png" Width="20" Margin="2"/>
-									<Image Source="/Resources/icons/blue/unlock.png" Width="20"/>
-								</StackPanel>
-							</DataTemplate>
-						</DataGridTemplateColumn.CellTemplate>
-					</DataGridTemplateColumn>
-				</DataGrid.Columns>
-			</DataGrid>
-			<Rectangle Fill="#1d1d1d" Grid.Row="4" Height="1" VerticalAlignment="Top" Margin="10 0 10 30"/>
+			<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+				<Button Margin="3" Padding="4" Background="#00bbff" BorderThickness="0.4" Width="80" Height="26">
+					<TextBlock Text="Применить" Foreground="White"/>
+				</Button>
+				<Button Margin="3" Padding="4" Background="White" BorderThickness="0.4" Width="80" Height="26">
+					<TextBlock Text="Очистить"/>
+				</Button>
+			</StackPanel>
+			
+			<Grid Grid.Row="3" Background="White">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Text='380649 - "ООО Торговые автоматы"' TextDecorations="Underline" Foreground="#1d1d1d" HorizontalAlignment="Left" Margin="10"/>
+
+				<DataGrid Name="DGMonitoring" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" RowBackground="White" Margin="10 0 10 0" Background="Transparent" LoadingRow="DGMonitoring_LoadingRow" BorderBrush="#1d1d1d">
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Header="Торговый автомат" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel Orientation="Horizontal">
+										<Ellipse Fill="{Binding status_color}" Width="15" Height="15" Margin="4"/>
+										<StackPanel>
+											<TextBlock Text="{Binding serial_number}" TextAlignment="Left"/>
+											<TextBlock Text="{Binding name}" TextAlignment="Left"/>
+											<TextBlock Text="{Binding ModelsMachine.Model}" Foreground="Gray" TextAlignment="Left"/>
+											<TextBlock Text="{Binding location}" Foreground="Gray"/>
+										</StackPanel>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Связь" Width="0.8*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel HorizontalAlignment="Center">
+										<StackPanel Orientation="Horizontal">
+											<Image Source="{Binding signal}" Width="35" Margin="5"/>
+											<Image Source="{Binding operator_photo}" Width="35" Margin="5"/>
+										</StackPanel>
+										<TextBlock Text="0p" Foreground="Gray"/>
+										<TextBlock Text="22:30"/>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Связь" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel HorizontalAlignment="Center" Margin="5">
+										<Grid Margin="2">
+											<ProgressBar Value="80" Minimum="0" Maximum="100" Foreground="#00eeaa"/>
+											<TextBlock Text="общая" Width="80" Margin="5"/>
+										</Grid>
+										<Grid Margin="2">
+											<ProgressBar Value="{Binding load}" Minimum="0" Maximum="100" Foreground="{Binding load_color}"/>
+											<TextBlock Text="миним." Width="80" Margin="5"/>
+										</Grid>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Денежные средства" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+										<StackPanel Orientation="Horizontal">
+											<Image Source="/Resources/icons/blue/Bills.png" Width="20"/>
+											<TextBlock Text="{Binding monets}"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal">
+											<Image Source="/Resources/icons/blue/Coins.png" Width="20"/>
+											<TextBlock Text="{Binding kopurs}"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal">
+											<Image Source="/Resources/icons/blue/Change.png" Width="20"/>
+											<TextBlock Text="{Binding sdacha}"/>
+										</StackPanel>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="события" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding serial_number}"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Оборудование" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding serial_number}"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Информация" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding serial_number}"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Доп." Width="0.8*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+										<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+											<MD:PackIcon Kind="TextBoxOutline" Width="20" Height="20" Foreground="#00bbff"/>
+											<MD:PackIcon Kind="Search" Width="20" Height="20" Foreground="#00bbff"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="{Binding dop2}"/>
+											<TextBlock Text="/"/>
+											<TextBlock Text="{Binding dop1}"/>
+										</StackPanel>
+									</StackPanel>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
 		</Grid>
 	</Grid>
 </Page>

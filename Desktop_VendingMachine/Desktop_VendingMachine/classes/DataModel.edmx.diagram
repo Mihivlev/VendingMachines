@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d2e8867c0de04c0ea6fb4e95fcef7f83" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Companies" Width="1.5" PointX="3.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.CriticalThresholdTemplate" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Maintenance" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.ModelsMachine" Width="1.5" PointX="3.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.NotificationTemplates" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Operators" Width="1.5" PointX="3.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.PaymentTypes" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Products" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Roles" Width="1.5" PointX="1.5" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Sales" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.ServicePriorities" Width="1.5" PointX="3.75" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Statuses" Width="1.5" PointX="3.75" PointY="24.375" IsExpanded="true" />
+      <Diagram DiagramId="177d775e1ff244eeaffc67eb46e83e1b" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Companies" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.CriticalThresholdTemplate" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Maintenance" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.ModelsMachine" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.NotificationTemplates" Width="1.5" PointX="3.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Operators" Width="1.5" PointX="3.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.PaymentTypes" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Products" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Roles" Width="1.5" PointX="1.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Sales" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.ServicePriorities" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Statuses" Width="1.5" PointX="3.75" PointY="24.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VendingMachinesModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Timezones" Width="1.5" PointX="3.75" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.Users" Width="1.5" PointX="3.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Timezones" Width="1.5" PointX="3.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Users" Width="1.5" PointX="3.75" PointY="29.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VendingMachinesModel.VendingMachines" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VendingMachinesModel.WorkModes" Width="1.5" PointX="3.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.WorkModes" Width="1.5" PointX="3.75" PointY="34.375" IsExpanded="true" />
         <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_Companies" ManuallyRouted="false" />
         <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_CriticalThresholdTemplate" ManuallyRouted="false" />
         <AssociationConnector Association="DB_VendingMachinesModel.FK_Maintenance_Users" ManuallyRouted="false" />

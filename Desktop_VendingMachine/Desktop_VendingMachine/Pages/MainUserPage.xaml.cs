@@ -16,6 +16,7 @@ namespace Desktop_VendingMachine.Pages
 			double prozent = (double)StorageClass.machinesEntities.VendingMachines.ToList().Where(x => x.status == 2).Count() / StorageClass.machinesEntities.VendingMachines.ToList().Count() * 100;
 
 			effNetwork.Text = "Работающих автоматов - " + (int)prozent + " %" ;
+			PBeff.Value = (int)prozent;
 		}
 	}
 }

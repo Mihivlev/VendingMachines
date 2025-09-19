@@ -187,6 +187,9 @@
     <Property Name="manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="engineer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="technician" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="monets" Type="Int32" />
+    <Property Name="kopurs" Type="Int32" />
+    <Property Name="sdacha" Type="Int32" />
     <NavigationProperty Name="Companies" Relationship="Self.FK_VendingMachines_Companies" FromRole="VendingMachines" ToRole="Companies" />
     <NavigationProperty Name="CriticalThresholdTemplate" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="VendingMachines" ToRole="CriticalThresholdTemplate" />
     <NavigationProperty Name="Maintenance" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="VendingMachines" ToRole="Maintenance" />
