@@ -16,6 +16,25 @@
     <Property Name="critical_threshold_template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="CriticalThresholdTemplate" ToRole="VendingMachines" />
   </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="event" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Events_VM" Relationship="Self.FK_Events_VM_Events" FromRole="Events" ToRole="Events_VM" />
+  </EntityType>
+  <EntityType Name="Events_VM">
+    <Key>
+      <PropertyRef Name="id_vm" />
+      <PropertyRef Name="id_event" />
+    </Key>
+    <Property Name="id_vm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_event" Type="Int32" Nullable="false" />
+    <Property Name="last_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_Events_VM_Events" FromRole="Events_VM" ToRole="Events" />
+    <NavigationProperty Name="VendingMachines" Relationship="Self.FK_Events_VM_VendingMachines" FromRole="Events_VM" ToRole="VendingMachines" />
+  </EntityType>
   <EntityType Name="Maintenance">
     <Key>
       <PropertyRef Name="id" />
@@ -106,6 +125,14 @@
     <Property Name="service_priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_ServicePriorities" FromRole="ServicePriorities" ToRole="VendingMachines" />
   </EntityType>
+  <EntityType Name="SettingTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="setting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VendingMachines" Relationship="Self.Settings_VM" FromRole="SettingTypes" ToRole="VendingMachines" />
+  </EntityType>
   <EntityType Name="Statuses">
     <Key>
       <PropertyRef Name="id" />
@@ -192,6 +219,7 @@
     <Property Name="sdacha" Type="Int32" />
     <NavigationProperty Name="Companies" Relationship="Self.FK_VendingMachines_Companies" FromRole="VendingMachines" ToRole="Companies" />
     <NavigationProperty Name="CriticalThresholdTemplate" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="VendingMachines" ToRole="CriticalThresholdTemplate" />
+    <NavigationProperty Name="Events_VM" Relationship="Self.FK_Events_VM_VendingMachines" FromRole="VendingMachines" ToRole="Events_VM" />
     <NavigationProperty Name="Maintenance" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="VendingMachines" ToRole="Maintenance" />
     <NavigationProperty Name="ModelsMachine" Relationship="Self.FK_VendingMachines_ModelsMachine" FromRole="VendingMachines" ToRole="ModelsMachine" />
     <NavigationProperty Name="NotificationTemplates" Relationship="Self.FK_VendingMachines_NotificationTemplates" FromRole="VendingMachines" ToRole="NotificationTemplates" />
@@ -205,6 +233,7 @@
     <NavigationProperty Name="Users2" Relationship="Self.FK_VendingMachines_Users2" FromRole="VendingMachines" ToRole="Users" />
     <NavigationProperty Name="Users3" Relationship="Self.FK_VendingMachines_Users3" FromRole="VendingMachines" ToRole="Users" />
     <NavigationProperty Name="WorkModes" Relationship="Self.FK_VendingMachines_WorkModes" FromRole="VendingMachines" ToRole="WorkModes" />
+    <NavigationProperty Name="SettingTypes" Relationship="Self.Settings_VM" FromRole="VendingMachines" ToRole="SettingTypes" />
     <NavigationProperty Name="PaymentTypes" Relationship="Self.VM_Payments" FromRole="VendingMachines" ToRole="PaymentTypes" />
   </EntityType>
   <EntityType Name="WorkModes">
@@ -240,6 +269,30 @@
       </Principal>
       <Dependent Role="VendingMachines">
         <PropertyRef Name="critical_threshold_template" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_VM_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Events_VM">
+        <PropertyRef Name="id_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_VM_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+    <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Events_VM">
+        <PropertyRef Name="id_vm" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -473,6 +526,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Settings_VM">
+    <End Role="SettingTypes" Type="Self.SettingTypes" Multiplicity="*" />
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+  </Association>
   <Association Name="VM_Payments">
     <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="*" />
     <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
@@ -480,6 +537,8 @@
   <EntityContainer Name="DB_VendingMachinesEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Companies" EntityType="Self.Companies" />
     <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" />
+    <EntitySet Name="Events" EntityType="Self.Events" />
+    <EntitySet Name="Events_VM" EntityType="Self.Events_VM" />
     <EntitySet Name="Maintenance" EntityType="Self.Maintenance" />
     <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" />
     <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" />
@@ -489,6 +548,7 @@
     <EntitySet Name="Roles" EntityType="Self.Roles" />
     <EntitySet Name="Sales" EntityType="Self.Sales" />
     <EntitySet Name="ServicePriorities" EntityType="Self.ServicePriorities" />
+    <EntitySet Name="SettingTypes" EntityType="Self.SettingTypes" />
     <EntitySet Name="Statuses" EntityType="Self.Statuses" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Timezones" EntityType="Self.Timezones" />
@@ -502,6 +562,14 @@
     <AssociationSet Name="FK_VendingMachines_CriticalThresholdTemplate" Association="Self.FK_VendingMachines_CriticalThresholdTemplate">
       <End Role="CriticalThresholdTemplate" EntitySet="CriticalThresholdTemplate" />
       <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Events_VM" EntitySet="Events_VM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_VM_VendingMachines" Association="Self.FK_Events_VM_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Events_VM" EntitySet="Events_VM" />
     </AssociationSet>
     <AssociationSet Name="FK_Maintenance_Users" Association="Self.FK_Maintenance_Users">
       <End Role="Users" EntitySet="Users" />
@@ -569,6 +637,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_VendingMachines_WorkModes" Association="Self.FK_VendingMachines_WorkModes">
       <End Role="WorkModes" EntitySet="WorkModes" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="Settings_VM" Association="Self.Settings_VM">
+      <End Role="SettingTypes" EntitySet="SettingTypes" />
       <End Role="VendingMachines" EntitySet="VendingMachines" />
     </AssociationSet>
     <AssociationSet Name="VM_Payments" Association="Self.VM_Payments">

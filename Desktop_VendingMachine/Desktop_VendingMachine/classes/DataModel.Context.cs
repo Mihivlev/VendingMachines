@@ -27,6 +27,8 @@ namespace Desktop_VendingMachine.classes
     
         public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<CriticalThresholdTemplate> CriticalThresholdTemplate { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
+        public virtual DbSet<Events_VM> Events_VM { get; set; }
         public virtual DbSet<Maintenance> Maintenance { get; set; }
         public virtual DbSet<ModelsMachine> ModelsMachine { get; set; }
         public virtual DbSet<NotificationTemplates> NotificationTemplates { get; set; }
@@ -36,6 +38,7 @@ namespace Desktop_VendingMachine.classes
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<ServicePriorities> ServicePriorities { get; set; }
+        public virtual DbSet<SettingTypes> SettingTypes { get; set; }
         public virtual DbSet<Statuses> Statuses { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Timezones> Timezones { get; set; }

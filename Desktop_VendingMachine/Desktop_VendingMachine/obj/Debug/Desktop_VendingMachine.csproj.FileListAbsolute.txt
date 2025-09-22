@@ -62,5 +62,3 @@ C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\MaterialDesignTh
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\Microsoft.Xaml.Behaviors.xml
-C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\obj\Debug\Pages\Page1.g.cs
-C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\obj\Debug\Pages\Page1.baml

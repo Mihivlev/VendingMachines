@@ -19,6 +19,22 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="critical_threshold_template" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="event" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events_VM">
+          <Key>
+            <PropertyRef Name="id_vm" />
+            <PropertyRef Name="id_event" />
+          </Key>
+          <Property Name="id_vm" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_event" Type="int" Nullable="false" />
+          <Property Name="last_date" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Maintenance">
           <Key>
             <PropertyRef Name="id" />
@@ -95,6 +111,21 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="service_priority" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings_VM">
+          <Key>
+            <PropertyRef Name="id_vm" />
+            <PropertyRef Name="id_setting" />
+          </Key>
+          <Property Name="id_vm" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_setting" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SettingTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="setting" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Statuses">
           <Key>
@@ -188,6 +219,30 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mode" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Events_VM_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_VM">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_VM_VendingMachines">
+          <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+          <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendingMachines">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_VM">
+              <PropertyRef Name="id_vm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Maintenance_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
@@ -253,6 +308,30 @@
             </Principal>
             <Dependent Role="Sales">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_VM_SettingTypes">
+          <End Role="SettingTypes" Type="Self.SettingTypes" Multiplicity="1" />
+          <End Role="Settings_VM" Type="Self.Settings_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SettingTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Settings_VM">
+              <PropertyRef Name="id_setting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Settings_VM_VendingMachines">
+          <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+          <End Role="Settings_VM" Type="Self.Settings_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendingMachines">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Settings_VM">
+              <PropertyRef Name="id_vm" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -477,6 +556,8 @@
         <EntityContainer Name="Хранилище DB_VendingMachinesModelContainer">
           <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events_VM" EntityType="Self.Events_VM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" Schema="dbo" store:Type="Tables" />
@@ -486,6 +567,8 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServicePriorities" EntityType="Self.ServicePriorities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings_VM" EntityType="Self.Settings_VM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SettingTypes" EntityType="Self.SettingTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Timezones" EntityType="Self.Timezones" Schema="dbo" store:Type="Tables" />
@@ -493,6 +576,14 @@
           <EntitySet Name="VendingMachines" EntityType="Self.VendingMachines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VM_Payments" EntityType="Self.VM_Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkModes" EntityType="Self.WorkModes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events_VM" EntitySet="Events_VM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_VM_VendingMachines" Association="Self.FK_Events_VM_VendingMachines">
+            <End Role="VendingMachines" EntitySet="VendingMachines" />
+            <End Role="Events_VM" EntitySet="Events_VM" />
+          </AssociationSet>
           <AssociationSet Name="FK_Maintenance_Users" Association="Self.FK_Maintenance_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Maintenance" EntitySet="Maintenance" />
@@ -512,6 +603,14 @@
           <AssociationSet Name="FK_Sales_Products" Association="Self.FK_Sales_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_VM_SettingTypes" Association="Self.FK_Settings_VM_SettingTypes">
+            <End Role="SettingTypes" EntitySet="SettingTypes" />
+            <End Role="Settings_VM" EntitySet="Settings_VM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Settings_VM_VendingMachines" Association="Self.FK_Settings_VM_VendingMachines">
+            <End Role="VendingMachines" EntitySet="VendingMachines" />
+            <End Role="Settings_VM" EntitySet="Settings_VM" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -598,6 +697,25 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="critical_threshold_template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="CriticalThresholdTemplate" ToRole="VendingMachines" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="event" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Events_VM" Relationship="Self.FK_Events_VM_Events" FromRole="Events" ToRole="Events_VM" />
+        </EntityType>
+        <EntityType Name="Events_VM">
+          <Key>
+            <PropertyRef Name="id_vm" />
+            <PropertyRef Name="id_event" />
+          </Key>
+          <Property Name="id_vm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_event" Type="Int32" Nullable="false" />
+          <Property Name="last_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_VM_Events" FromRole="Events_VM" ToRole="Events" />
+          <NavigationProperty Name="VendingMachines" Relationship="Self.FK_Events_VM_VendingMachines" FromRole="Events_VM" ToRole="VendingMachines" />
         </EntityType>
         <EntityType Name="Maintenance">
           <Key>
@@ -689,6 +807,14 @@
           <Property Name="service_priority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_ServicePriorities" FromRole="ServicePriorities" ToRole="VendingMachines" />
         </EntityType>
+        <EntityType Name="SettingTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="setting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="VendingMachines" Relationship="Self.Settings_VM" FromRole="SettingTypes" ToRole="VendingMachines" />
+        </EntityType>
         <EntityType Name="Statuses">
           <Key>
             <PropertyRef Name="id" />
@@ -775,6 +901,7 @@
           <Property Name="sdacha" Type="Int32" />
           <NavigationProperty Name="Companies" Relationship="Self.FK_VendingMachines_Companies" FromRole="VendingMachines" ToRole="Companies" />
           <NavigationProperty Name="CriticalThresholdTemplate" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="VendingMachines" ToRole="CriticalThresholdTemplate" />
+          <NavigationProperty Name="Events_VM" Relationship="Self.FK_Events_VM_VendingMachines" FromRole="VendingMachines" ToRole="Events_VM" />
           <NavigationProperty Name="Maintenance" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="VendingMachines" ToRole="Maintenance" />
           <NavigationProperty Name="ModelsMachine" Relationship="Self.FK_VendingMachines_ModelsMachine" FromRole="VendingMachines" ToRole="ModelsMachine" />
           <NavigationProperty Name="NotificationTemplates" Relationship="Self.FK_VendingMachines_NotificationTemplates" FromRole="VendingMachines" ToRole="NotificationTemplates" />
@@ -788,6 +915,7 @@
           <NavigationProperty Name="Users2" Relationship="Self.FK_VendingMachines_Users2" FromRole="VendingMachines" ToRole="Users" />
           <NavigationProperty Name="Users3" Relationship="Self.FK_VendingMachines_Users3" FromRole="VendingMachines" ToRole="Users" />
           <NavigationProperty Name="WorkModes" Relationship="Self.FK_VendingMachines_WorkModes" FromRole="VendingMachines" ToRole="WorkModes" />
+          <NavigationProperty Name="SettingTypes" Relationship="Self.Settings_VM" FromRole="VendingMachines" ToRole="SettingTypes" />
           <NavigationProperty Name="PaymentTypes" Relationship="Self.VM_Payments" FromRole="VendingMachines" ToRole="PaymentTypes" />
         </EntityType>
         <EntityType Name="WorkModes">
@@ -823,6 +951,30 @@
             </Principal>
             <Dependent Role="VendingMachines">
               <PropertyRef Name="critical_threshold_template" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_VM_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_VM">
+              <PropertyRef Name="id_event" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_VM_VendingMachines">
+          <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+          <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendingMachines">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Events_VM">
+              <PropertyRef Name="id_vm" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1056,6 +1208,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Settings_VM">
+          <End Role="SettingTypes" Type="Self.SettingTypes" Multiplicity="*" />
+          <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+        </Association>
         <Association Name="VM_Payments">
           <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="*" />
           <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
@@ -1063,6 +1219,8 @@
         <EntityContainer Name="DB_VendingMachinesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Companies" EntityType="Self.Companies" />
           <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" />
+          <EntitySet Name="Events" EntityType="Self.Events" />
+          <EntitySet Name="Events_VM" EntityType="Self.Events_VM" />
           <EntitySet Name="Maintenance" EntityType="Self.Maintenance" />
           <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" />
           <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" />
@@ -1072,6 +1230,7 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Sales" EntityType="Self.Sales" />
           <EntitySet Name="ServicePriorities" EntityType="Self.ServicePriorities" />
+          <EntitySet Name="SettingTypes" EntityType="Self.SettingTypes" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Timezones" EntityType="Self.Timezones" />
@@ -1085,6 +1244,14 @@
           <AssociationSet Name="FK_VendingMachines_CriticalThresholdTemplate" Association="Self.FK_VendingMachines_CriticalThresholdTemplate">
             <End Role="CriticalThresholdTemplate" EntitySet="CriticalThresholdTemplate" />
             <End Role="VendingMachines" EntitySet="VendingMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Events_VM" EntitySet="Events_VM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_VM_VendingMachines" Association="Self.FK_Events_VM_VendingMachines">
+            <End Role="VendingMachines" EntitySet="VendingMachines" />
+            <End Role="Events_VM" EntitySet="Events_VM" />
           </AssociationSet>
           <AssociationSet Name="FK_Maintenance_Users" Association="Self.FK_Maintenance_Users">
             <End Role="Users" EntitySet="Users" />
@@ -1154,6 +1321,10 @@
             <End Role="WorkModes" EntitySet="WorkModes" />
             <End Role="VendingMachines" EntitySet="VendingMachines" />
           </AssociationSet>
+          <AssociationSet Name="Settings_VM" Association="Self.Settings_VM">
+            <End Role="SettingTypes" EntitySet="SettingTypes" />
+            <End Role="VendingMachines" EntitySet="VendingMachines" />
+          </AssociationSet>
           <AssociationSet Name="VM_Payments" Association="Self.VM_Payments">
             <End Role="PaymentTypes" EntitySet="PaymentTypes" />
             <End Role="VendingMachines" EntitySet="VendingMachines" />
@@ -1178,6 +1349,23 @@
               <MappingFragment StoreEntitySet="CriticalThresholdTemplate">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="critical_threshold_template" ColumnName="critical_threshold_template" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="event" ColumnName="event" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events_VM">
+            <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events_VM">
+              <MappingFragment StoreEntitySet="Events_VM">
+                <ScalarProperty Name="id_vm" ColumnName="id_vm" />
+                <ScalarProperty Name="id_event" ColumnName="id_event" />
+                <ScalarProperty Name="last_date" ColumnName="last_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1264,6 +1452,14 @@
               <MappingFragment StoreEntitySet="ServicePriorities">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="service_priority" ColumnName="service_priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SettingTypes">
+            <EntityTypeMapping TypeName="DB_VendingMachinesModel.SettingTypes">
+              <MappingFragment StoreEntitySet="SettingTypes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="setting" ColumnName="setting" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1357,6 +1553,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="Settings_VM" TypeName="DB_VendingMachinesModel.Settings_VM" StoreEntitySet="Settings_VM">
+            <EndProperty Name="SettingTypes">
+              <ScalarProperty Name="id" ColumnName="id_setting" />
+            </EndProperty>
+            <EndProperty Name="VendingMachines">
+              <ScalarProperty Name="id" ColumnName="id_vm" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="VM_Payments" TypeName="DB_VendingMachinesModel.VM_Payments" StoreEntitySet="VM_Payments">
             <EndProperty Name="PaymentTypes">
               <ScalarProperty Name="id" ColumnName="payment_type_id" />

@@ -50,13 +50,13 @@
 				<StackPanel Margin="8">
 					<TextBlock Text="Общее состояние" HorizontalAlignment="Left" Margin="5 0 0 0"/>
 					<StackPanel Orientation="Horizontal" Margin="5">
-						<Border Background="white" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7">
+						<Border Name="btnWorking" Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7" MouseDown="StatusFilter_isWorking">
 							<Ellipse Fill="Green" Width="15" Height="15"/>
 						</Border>
-						<Border Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7">
+						<Border Name="btnBroken" Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7" MouseDown="StatusFilter_isBroken">
 							<Ellipse Fill="Red" Width="15" Height="15"/>
 						</Border>
-						<Border Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7">
+						<Border Name="btnInService" Background="White" Padding="10" BorderBrush="#1d1d1d" BorderThickness="0.7" MouseDown="StatusFilter_isInService">
 							<Ellipse Fill="#00bbff" Width="15" Height="15"/>
 						</Border>
 					</StackPanel>
@@ -111,10 +111,10 @@
 			</Grid>
 
 			<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-				<Button Margin="3" Padding="4" Background="#00bbff" BorderThickness="0.4" Width="80" Height="26">
+				<Button Margin="3" Padding="4" Background="#00bbff" BorderThickness="0.4" Width="80" Height="26" Click="WithFilter">
 					<TextBlock Text="Применить" Foreground="White"/>
 				</Button>
-				<Button Margin="3" Padding="4" Background="White" BorderThickness="0.4" Width="80" Height="26">
+				<Button Margin="3" Padding="4" Background="White" BorderThickness="0.4" Width="80" Height="26" Click="WithoutFilter">
 					<TextBlock Text="Очистить"/>
 				</Button>
 			</StackPanel>
@@ -123,6 +123,7 @@
 				<Grid.RowDefinitions>
 					<RowDefinition Height="auto"/>
 					<RowDefinition Height="*"/>
+					<RowDefinition Height="auto"/>
 				</Grid.RowDefinitions>
 
 				<TextBlock Text='380649 - "ООО Торговые автоматы"' TextDecorations="Underline" Foreground="#1d1d1d" HorizontalAlignment="Left" Margin="10"/>
@@ -158,7 +159,7 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn Header="Связь" Width="*">
+						<DataGridTemplateColumn Header="Загрузка" Width="*">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<StackPanel HorizontalAlignment="Center" Margin="5">
@@ -179,15 +180,15 @@
 								<DataTemplate>
 									<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 										<StackPanel Orientation="Horizontal">
-											<Image Source="/Resources/icons/blue/Bills.png" Width="20"/>
+											<Image Source="/Resources/icons/blue/Bills.png" Width="18" Margin="2"/>
 											<TextBlock Text="{Binding monets}"/>
 										</StackPanel>
 										<StackPanel Orientation="Horizontal">
-											<Image Source="/Resources/icons/blue/Coins.png" Width="20"/>
+											<Image Source="/Resources/icons/blue/Coins.png" Width="18" Margin="2"/>
 											<TextBlock Text="{Binding kopurs}"/>
 										</StackPanel>
 										<StackPanel Orientation="Horizontal">
-											<Image Source="/Resources/icons/blue/Change.png" Width="20"/>
+											<Image Source="/Resources/icons/blue/Change.png" Width="18" Margin="2"/>
 											<TextBlock Text="{Binding sdacha}"/>
 										</StackPanel>
 									</StackPanel>
@@ -197,21 +198,49 @@
 						<DataGridTemplateColumn Header="события" Width="*">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding serial_number}"/>
+									<ListView ItemsSource="{Binding Events_VM}" Focusable="False" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+										<ListView.ItemTemplate>
+											<DataTemplate>
+												<StackPanel Orientation="Horizontal">
+													<Image Source="{Binding Photo}" Width="16"/>
+													<TextBlock Text="{Binding last_date, StringFormat=dd MMMM}"/>
+												</StackPanel>
+											</DataTemplate>
+										</ListView.ItemTemplate>
+									</ListView>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 						<DataGridTemplateColumn Header="Оборудование" Width="*">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding serial_number}"/>
+									<WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+										<Image Source="/Resources/icons/hardware/PowerOk.png" Width="20" Margin="4"/>
+										<Image Source="/Resources/icons/hardware/BillValidatorOk.png" Width="20" Margin="4"/>
+										<Image Source="/Resources/icons/hardware/CoinAcceptorOk.png" Width="20" Margin="4"/>
+										<Image Source="{Binding cashless}" Width="20" Margin="4"/>
+										<Image Source="{Binding cashlregister}" Width="20" Margin="4"/>
+										<Image Source="/Resources/icons/hardware/DisplayOk.png" Width="20" Margin="4"/>
+										<Image Source="/Resources/icons/hardware/CardReaderNone.png" Width="20" Margin="4"/>
+									</WrapPanel>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
 						<DataGridTemplateColumn Header="Информация" Width="*">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding serial_number}"/>
+									<ListView ItemsSource="{Binding SettingTypes}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" VerticalAlignment="Center" BorderThickness="0">
+										<ListView.ItemTemplate>
+											<DataTemplate>
+												<Image Source="{Binding photo}" Width="20"/>
+											</DataTemplate>
+										</ListView.ItemTemplate>
+										<ListView.ItemsPanel>
+											<ItemsPanelTemplate>
+												<WrapPanel Orientation="Horizontal"/>
+											</ItemsPanelTemplate>
+										</ListView.ItemsPanel>
+									</ListView>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
@@ -223,7 +252,7 @@
 											<MD:PackIcon Kind="TextBoxOutline" Width="20" Height="20" Foreground="#00bbff"/>
 											<MD:PackIcon Kind="Search" Width="20" Height="20" Foreground="#00bbff"/>
 										</StackPanel>
-										<StackPanel Orientation="Horizontal">
+										<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 											<TextBlock Text="{Binding dop2}"/>
 											<TextBlock Text="/"/>
 											<TextBlock Text="{Binding dop1}"/>
@@ -234,6 +263,18 @@
 						</DataGridTemplateColumn>
 					</DataGrid.Columns>
 				</DataGrid>
+				<StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
+					<TextBlock Text="Итого автоматов : "/>
+					<TextBlock Name="TBallVM"/>
+					<TextBlock Text=" ("/>
+					<TextBlock x:Name="TBWorking" Foreground="Green"/>
+					<TextBlock Text=" / "/>
+					<TextBlock x:Name="TBinService" Foreground="Blue"/>
+					<TextBlock Text=" / "/>
+					<TextBlock x:Name="TBBroken" Foreground="Red"/>
+					<TextBlock Text="). "/>
+					<TextBlock Name="TBMoney"/>
+				</StackPanel>
 			</Grid>
 		</Grid>
 	</Grid>

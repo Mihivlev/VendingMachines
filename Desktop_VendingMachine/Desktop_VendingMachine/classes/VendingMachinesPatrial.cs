@@ -112,5 +112,25 @@ namespace Desktop_VendingMachine.classes
 			}
 			set { }
 		}
+		public string cashless
+		{
+			get 
+			{
+				if (PaymentTypes.Contains(StorageClass.machinesEntities.PaymentTypes.Find(3)))
+					return "/Resources/icons/hardware/CashlessOk.png";
+				return "/Resources/icons/hardware/CashlessNone.png";
+			}
+			set { }
+		}
+		public string cashlregister
+		{
+			get
+			{
+				if (PaymentTypes.Contains(StorageClass.machinesEntities.PaymentTypes.Find(3)))
+					return "/Resources/icons/hardware/CashregisterOk.png";
+				return "/Resources/icons/hardware/CashregisterNone.png";
+			}
+			set { }
+		}
 	}
 }

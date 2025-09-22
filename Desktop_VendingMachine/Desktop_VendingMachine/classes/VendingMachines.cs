@@ -17,8 +17,10 @@ namespace Desktop_VendingMachine.classes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VendingMachines()
         {
+            this.Events_VM = new HashSet<Events_VM>();
             this.Maintenance = new HashSet<Maintenance>();
             this.Products = new HashSet<Products>();
+            this.SettingTypes = new HashSet<SettingTypes>();
             this.PaymentTypes = new HashSet<PaymentTypes>();
         }
     
@@ -58,6 +60,8 @@ namespace Desktop_VendingMachine.classes
         public virtual Companies Companies { get; set; }
         public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Events_VM> Events_VM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Maintenance> Maintenance { get; set; }
         public virtual ModelsMachine ModelsMachine { get; set; }
         public virtual NotificationTemplates NotificationTemplates { get; set; }
@@ -72,6 +76,8 @@ namespace Desktop_VendingMachine.classes
         public virtual Users Users2 { get; set; }
         public virtual Users Users3 { get; set; }
         public virtual WorkModes WorkModes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SettingTypes> SettingTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentTypes> PaymentTypes { get; set; }
     }

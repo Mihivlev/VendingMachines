@@ -17,6 +17,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="event" ColumnName="event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events_VM">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events_VM">
+        <MappingFragment StoreEntitySet="Events_VM">
+          <ScalarProperty Name="id_vm" ColumnName="id_vm" />
+          <ScalarProperty Name="id_event" ColumnName="id_event" />
+          <ScalarProperty Name="last_date" ColumnName="last_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Maintenance">
       <EntityTypeMapping TypeName="DB_VendingMachinesModel.Maintenance">
         <MappingFragment StoreEntitySet="Maintenance">
@@ -100,6 +117,14 @@
         <MappingFragment StoreEntitySet="ServicePriorities">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="service_priority" ColumnName="service_priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SettingTypes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.SettingTypes">
+        <MappingFragment StoreEntitySet="SettingTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="setting" ColumnName="setting" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -193,6 +218,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="Settings_VM" TypeName="DB_VendingMachinesModel.Settings_VM" StoreEntitySet="Settings_VM">
+      <EndProperty Name="SettingTypes">
+        <ScalarProperty Name="id" ColumnName="id_setting" />
+      </EndProperty>
+      <EndProperty Name="VendingMachines">
+        <ScalarProperty Name="id" ColumnName="id_vm" />
+      </EndProperty>
+    </AssociationSetMapping>
     <AssociationSetMapping Name="VM_Payments" TypeName="DB_VendingMachinesModel.VM_Payments" StoreEntitySet="VM_Payments">
       <EndProperty Name="PaymentTypes">
         <ScalarProperty Name="id" ColumnName="payment_type_id" />
