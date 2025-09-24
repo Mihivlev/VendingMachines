@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="company" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CriticalThresholdTemplate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="critical_threshold_template" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="event" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events_VM">
+    <Key>
+      <PropertyRef Name="id_vm" />
+      <PropertyRef Name="id_event" />
+    </Key>
+    <Property Name="id_vm" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_event" Type="int" Nullable="false" />
+    <Property Name="last_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Maintenance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="issues_found" Type="nvarchar(max)" />
+    <Property Name="vending_machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_employee" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="work_description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModelsMachine">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotificationTemplates">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="notification_template" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Operators">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="operator" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="min_stock" Type="int" Nullable="false" />
+    <Property Name="vending_machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="quantity_available" Type="int" Nullable="false" />
+    <Property Name="sales_trend" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="quantity" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="total_price" Type="float" Nullable="false" />
+    <Property Name="timestamp" Type="datetime" Nullable="false" />
+    <Property Name="payment_method" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServicePriorities">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="service_priority" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings_VM">
+    <Key>
+      <PropertyRef Name="id_vm" />
+      <PropertyRef Name="id_setting" />
+    </Key>
+    <Property Name="id_vm" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_setting" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SettingTypes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="setting" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="color" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Timezones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timezone" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="full_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="int" Nullable="false" />
+    <Property Name="is_manager" Type="bit" Nullable="false" />
+    <Property Name="is_engineer" Type="bit" Nullable="false" />
+    <Property Name="is_technician" Type="bit" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VendingMachines">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="company" Type="int" Nullable="false" />
+    <Property Name="model" Type="int" Nullable="false" />
+    <Property Name="work_mode" Type="int" Nullable="false" />
+    <Property Name="location" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="coordinates" Type="nvarchar" MaxLength="150" />
+    <Property Name="serial_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="working_hours" Type="nvarchar" MaxLength="50" />
+    <Property Name="timezone" Type="int" />
+    <Property Name="matrix" Type="int" />
+    <Property Name="critical_threshold_template" Type="int" />
+    <Property Name="notification_template" Type="int" />
+    <Property Name="user_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="operator" Type="int" />
+    <Property Name="rfid_service" Type="nvarchar" MaxLength="40" />
+    <Property Name="rfid_cash_collection" Type="nvarchar" MaxLength="40" />
+    <Property Name="rfid_loading" Type="nvarchar" MaxLength="40" />
+    <Property Name="kit_online_id" Type="nvarchar" MaxLength="30" />
+    <Property Name="service_priority" Type="int" />
+    <Property Name="notes" Type="nvarchar(max)" />
+    <Property Name="status" Type="int" />
+    <Property Name="install_date" Type="datetime" />
+    <Property Name="last_maintenance_date" Type="datetime" />
+    <Property Name="total_income" Type="float" />
+    <Property Name="manager" Type="nvarchar" MaxLength="50" />
+    <Property Name="engineer" Type="nvarchar" MaxLength="50" />
+    <Property Name="technician" Type="nvarchar" MaxLength="50" />
+    <Property Name="monets" Type="int" />
+    <Property Name="kopurs" Type="int" />
+    <Property Name="sdacha" Type="int" />
+  </EntityType>
+  <EntityType Name="VM_Payments">
+    <Key>
+      <PropertyRef Name="vm_id" />
+      <PropertyRef Name="payment_type_id" />
+    </Key>
+    <Property Name="vm_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="payment_type_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkModes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Events_VM_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Events_VM">
+        <PropertyRef Name="id_event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_VM_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+    <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Events_VM">
+        <PropertyRef Name="id_vm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Maintenance_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Maintenance_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="vending_machine_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="vending_machine_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_PaymentTypes">
+    <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="payment_method" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sales_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sales">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Settings_VM_SettingTypes">
+    <End Role="SettingTypes" Type="Self.SettingTypes" Multiplicity="1" />
+    <End Role="Settings_VM" Type="Self.Settings_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SettingTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Settings_VM">
+        <PropertyRef Name="id_setting" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Settings_VM_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+    <End Role="Settings_VM" Type="Self.Settings_VM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Settings_VM">
+        <PropertyRef Name="id_vm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Companies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_CriticalThresholdTemplate">
+    <End Role="CriticalThresholdTemplate" Type="Self.CriticalThresholdTemplate" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CriticalThresholdTemplate">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="critical_threshold_template" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_ModelsMachine">
+    <End Role="ModelsMachine" Type="Self.ModelsMachine" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelsMachine">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_NotificationTemplates">
+    <End Role="NotificationTemplates" Type="Self.NotificationTemplates" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotificationTemplates">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="notification_template" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Operators">
+    <End Role="Operators" Type="Self.Operators" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operators">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="operator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_ServicePriorities">
+    <End Role="ServicePriorities" Type="Self.ServicePriorities" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServicePriorities">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="service_priority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Statuses">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Timezones">
+    <End Role="Timezones" Type="Self.Timezones" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timezones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="timezone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="manager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Users2">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="engineer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_Users3">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendingMachines_WorkModes">
+    <End Role="WorkModes" Type="Self.WorkModes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkModes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VendingMachines">
+        <PropertyRef Name="work_mode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VM_Payments_PaymentTypes">
+    <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VM_Payments" Type="Self.VM_Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentTypes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VM_Payments">
+        <PropertyRef Name="payment_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VM_Payments_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VM_Payments" Type="Self.VM_Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="VM_Payments">
+        <PropertyRef Name="vm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DB_VendingMachinesModelContainer">
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events_VM" EntityType="Self.Events_VM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Operators" EntityType="Self.Operators" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicePriorities" EntityType="Self.ServicePriorities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings_VM" EntityType="Self.Settings_VM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SettingTypes" EntityType="Self.SettingTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timezones" EntityType="Self.Timezones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendingMachines" EntityType="Self.VendingMachines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VM_Payments" EntityType="Self.VM_Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkModes" EntityType="Self.WorkModes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Events_VM" EntitySet="Events_VM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_VM_VendingMachines" Association="Self.FK_Events_VM_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Events_VM" EntitySet="Events_VM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maintenance_Users" Association="Self.FK_Maintenance_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maintenance_VendingMachines" Association="Self.FK_Maintenance_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_VendingMachines" Association="Self.FK_Products_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_PaymentTypes" Association="Self.FK_Sales_PaymentTypes">
+      <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sales_Products" Association="Self.FK_Sales_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Sales" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Settings_VM_SettingTypes" Association="Self.FK_Settings_VM_SettingTypes">
+      <End Role="SettingTypes" EntitySet="SettingTypes" />
+      <End Role="Settings_VM" EntitySet="Settings_VM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Settings_VM_VendingMachines" Association="Self.FK_Settings_VM_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Settings_VM" EntitySet="Settings_VM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Companies" Association="Self.FK_VendingMachines_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_CriticalThresholdTemplate" Association="Self.FK_VendingMachines_CriticalThresholdTemplate">
+      <End Role="CriticalThresholdTemplate" EntitySet="CriticalThresholdTemplate" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_ModelsMachine" Association="Self.FK_VendingMachines_ModelsMachine">
+      <End Role="ModelsMachine" EntitySet="ModelsMachine" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_NotificationTemplates" Association="Self.FK_VendingMachines_NotificationTemplates">
+      <End Role="NotificationTemplates" EntitySet="NotificationTemplates" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Operators" Association="Self.FK_VendingMachines_Operators">
+      <End Role="Operators" EntitySet="Operators" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_ServicePriorities" Association="Self.FK_VendingMachines_ServicePriorities">
+      <End Role="ServicePriorities" EntitySet="ServicePriorities" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Statuses" Association="Self.FK_VendingMachines_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Timezones" Association="Self.FK_VendingMachines_Timezones">
+      <End Role="Timezones" EntitySet="Timezones" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Users" Association="Self.FK_VendingMachines_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Users1" Association="Self.FK_VendingMachines_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Users2" Association="Self.FK_VendingMachines_Users2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_Users3" Association="Self.FK_VendingMachines_Users3">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendingMachines_WorkModes" Association="Self.FK_VendingMachines_WorkModes">
+      <End Role="WorkModes" EntitySet="WorkModes" />
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VM_Payments_PaymentTypes" Association="Self.FK_VM_Payments_PaymentTypes">
+      <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+      <End Role="VM_Payments" EntitySet="VM_Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VM_Payments_VendingMachines" Association="Self.FK_VM_Payments_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="VM_Payments" EntitySet="VM_Payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

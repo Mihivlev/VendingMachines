@@ -10,6 +10,7 @@ namespace Desktop_VendingMachine.Pages
 	/// </summary>
 	public partial class VendingMachinesPage : Page
 	{
+		int pageCount = 1;
 		public VendingMachinesPage()
 		{
 			InitializeComponent();
@@ -19,7 +20,9 @@ namespace Desktop_VendingMachine.Pages
 		private void LoadData()
 		{
 			DGVendingMachines.ItemsSource = StorageClass.machinesEntities.VendingMachines.ToList();
-			TBCount.Text = "Всего найдено " + StorageClass.machinesEntities.VendingMachines.ToList().Count().ToString() + " штук";
+			int count = StorageClass.machinesEntities.VendingMachines.ToList().Count();
+			TBCount.Text = "Всего найдено " + count.ToString() + " штук";
+			TBSecondCount.Text = "Записи с 1 до " + count.ToString() + " из " + count.ToString() + " записей";
 		}
 
 		private void AddVB(object sender, RoutedEventArgs e)
@@ -50,5 +53,18 @@ namespace Desktop_VendingMachine.Pages
 				LoadData();
 			}
         }
-    }
+
+		private void pagePrev(object sender, RoutedEventArgs e)
+		{
+			if (pageCount > 1)
+				pageCount--;
+			TBPage.Text = pageCount.ToString();
+		}
+
+		private void pageNext(object sender, RoutedEventArgs e)
+		{
+			pageCount++;
+			TBPage.Text = pageCount.ToString();
+		}
+	}
 }

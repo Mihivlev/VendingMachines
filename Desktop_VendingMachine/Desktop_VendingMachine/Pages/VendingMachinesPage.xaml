@@ -143,6 +143,18 @@
 				</DataGrid.Columns>
 			</DataGrid>
 			<Rectangle Fill="#1d1d1d" Grid.Row="4" Height="1" VerticalAlignment="Top" Margin="10 0 10 30"/>
+			<StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
+				<Button Padding="5" Background="Transparent" Width="30" Click="pagePrev">
+					<DM:PackIcon Kind="ChevronLeft"/>
+				</Button>
+				<Border BorderThickness="0.7" BorderBrush="#1d1d1d" Width="30" Background="#00bbff">
+					<TextBlock Name="TBPage" Padding="5" Text="1" Foreground="White"/>
+				</Border>
+				<Button Padding="5" Background="Transparent" Width="30" Click="pageNext">
+					<DM:PackIcon Kind="ChevronRight"/>
+				</Button>
+			</StackPanel>
+			<TextBlock Name="TBSecondCount" Grid.Row="4" HorizontalAlignment="Left" Margin="10"/>
 		</Grid>
 	</Grid>
 </Page>

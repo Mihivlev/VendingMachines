@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DB_VendingMachinesModelContainer" CdmEntityContainer="DB_VendingMachinesEntities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Companies">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CriticalThresholdTemplate">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.CriticalThresholdTemplate">
+        <MappingFragment StoreEntitySet="CriticalThresholdTemplate">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="critical_threshold_template" ColumnName="critical_threshold_template" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="event" ColumnName="event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events_VM">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events_VM">
+        <MappingFragment StoreEntitySet="Events_VM">
+          <ScalarProperty Name="id_vm" ColumnName="id_vm" />
+          <ScalarProperty Name="id_event" ColumnName="id_event" />
+          <ScalarProperty Name="last_date" ColumnName="last_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maintenance">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Maintenance">
+        <MappingFragment StoreEntitySet="Maintenance">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="issues_found" ColumnName="issues_found" />
+          <ScalarProperty Name="vending_machine_id" ColumnName="vending_machine_id" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="work_description" ColumnName="work_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelsMachine">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.ModelsMachine">
+        <MappingFragment StoreEntitySet="ModelsMachine">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationTemplates">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.NotificationTemplates">
+        <MappingFragment StoreEntitySet="NotificationTemplates">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="notification_template" ColumnName="notification_template" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Operators">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Operators">
+        <MappingFragment StoreEntitySet="Operators">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="operator" ColumnName="operator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentTypes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.PaymentTypes">
+        <MappingFragment StoreEntitySet="PaymentTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="min_stock" ColumnName="min_stock" />
+          <ScalarProperty Name="vending_machine_id" ColumnName="vending_machine_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="quantity_available" ColumnName="quantity_available" />
+          <ScalarProperty Name="sales_trend" ColumnName="sales_trend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Sales">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServicePriorities">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.ServicePriorities">
+        <MappingFragment StoreEntitySet="ServicePriorities">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="service_priority" ColumnName="service_priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SettingTypes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.SettingTypes">
+        <MappingFragment StoreEntitySet="SettingTypes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="setting" ColumnName="setting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statuses">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Statuses">
+        <MappingFragment StoreEntitySet="Statuses">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timezones">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Timezones">
+        <MappingFragment StoreEntitySet="Timezones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="timezone" ColumnName="timezone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="is_manager" ColumnName="is_manager" />
+          <ScalarProperty Name="is_engineer" ColumnName="is_engineer" />
+          <ScalarProperty Name="is_technician" ColumnName="is_technician" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendingMachines">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.VendingMachines">
+        <MappingFragment StoreEntitySet="VendingMachines">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="work_mode" ColumnName="work_mode" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="coordinates" ColumnName="coordinates" />
+          <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+          <ScalarProperty Name="working_hours" ColumnName="working_hours" />
+          <ScalarProperty Name="timezone" ColumnName="timezone" />
+          <ScalarProperty Name="matrix" ColumnName="matrix" />
+          <ScalarProperty Name="critical_threshold_template" ColumnName="critical_threshold_template" />
+          <ScalarProperty Name="notification_template" ColumnName="notification_template" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="operator" ColumnName="operator" />
+          <ScalarProperty Name="rfid_service" ColumnName="rfid_service" />
+          <ScalarProperty Name="rfid_cash_collection" ColumnName="rfid_cash_collection" />
+          <ScalarProperty Name="rfid_loading" ColumnName="rfid_loading" />
+          <ScalarProperty Name="kit_online_id" ColumnName="kit_online_id" />
+          <ScalarProperty Name="service_priority" ColumnName="service_priority" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="install_date" ColumnName="install_date" />
+          <ScalarProperty Name="last_maintenance_date" ColumnName="last_maintenance_date" />
+          <ScalarProperty Name="total_income" ColumnName="total_income" />
+          <ScalarProperty Name="manager" ColumnName="manager" />
+          <ScalarProperty Name="engineer" ColumnName="engineer" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="monets" ColumnName="monets" />
+          <ScalarProperty Name="kopurs" ColumnName="kopurs" />
+          <ScalarProperty Name="sdacha" ColumnName="sdacha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkModes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.WorkModes">
+        <MappingFragment StoreEntitySet="WorkModes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mode" ColumnName="mode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Settings_VM" TypeName="DB_VendingMachinesModel.Settings_VM" StoreEntitySet="Settings_VM">
+      <EndProperty Name="SettingTypes">
+        <ScalarProperty Name="id" ColumnName="id_setting" />
+      </EndProperty>
+      <EndProperty Name="VendingMachines">
+        <ScalarProperty Name="id" ColumnName="id_vm" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VM_Payments" TypeName="DB_VendingMachinesModel.VM_Payments" StoreEntitySet="VM_Payments">
+      <EndProperty Name="PaymentTypes">
+        <ScalarProperty Name="id" ColumnName="payment_type_id" />
+      </EndProperty>
+      <EndProperty Name="VendingMachines">
+        <ScalarProperty Name="id" ColumnName="vm_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

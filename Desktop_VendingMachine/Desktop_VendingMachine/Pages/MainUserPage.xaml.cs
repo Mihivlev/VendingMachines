@@ -17,6 +17,8 @@ namespace Desktop_VendingMachine.Pages
 
 			effNetwork.Text = "Работающих автоматов - " + (int)prozent + " %" ;
 			PBeff.Value = (int)prozent;
+
+			
 		}
 	}
 }

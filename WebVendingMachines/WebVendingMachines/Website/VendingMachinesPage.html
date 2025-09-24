@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="StyleSheet.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="head head_text">
+        <a href="MainPage.html"><p>Главная</p></a>
+        <a><p>Торговые автоматы</p></a>
+        <a><p>Договоры</p></a>
+        <a><p>Настройки</p></a>
+    </div>
+
+    <div class="MainBlock">
+        <div class="VM_Block">
+            <h2>Торговые автоматы</h2>
+            <div id="VendingMachines" class="VMBlock">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function LoadData() {
+            const response = await fetch("https://localhost:44396/api/VendingMachines", {
+                method: "GET",
+                headers: { 'Access': 'aplication/json' }
+            })
+            if (response.ok) {
+                const data = await response.json()
+                var Block = document.getElementById("VendingMachines")
+
+                while (Block.firstChild) Block.firstChild.remove()
+
+                for (var i = 0; i < data.length; i++) {
+                    var item = data[i]
+
+                    var machine = document.createElement("div")
+                    machine.className = "VM_VH"
+                    Block.appendChild(machine)
+
+                    var id = document.createElement("p");
+                    id.textContent = item.serial_number
+                    machine.appendChild(id)
+
+                    var id = document.createElement("p");
+                    id.textContent = item.name
+                    machine.appendChild(id)
+
+                }
+            }
+            else console.log("error")
+        }
+
+        LoadData()
+    </script>
+</body>
+</html>

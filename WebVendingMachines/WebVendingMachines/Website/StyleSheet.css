@@ -1,0 +1,48 @@
+﻿body {
+	display:grid;
+	grid-template-columns: 240px auto;
+	margin:0;
+	height:100%;
+}
+p {
+	font-size:14px;
+}
+.head_text {
+	color: white;
+	text-align:center;
+	font-size:18px;
+}
+a:hover {
+	color: lightgray;
+}
+a:visited {
+	color: white;
+	text-decoration:none;
+}
+
+/* Blocks */
+
+.head {
+	background-color: #00bbff;
+	height:100%;
+}
+.MainBlock {
+	padding:10px;
+	align-content: center;
+	vertical-align:central;
+	background-color: lightgray;
+}
+.VM_Block {
+	background-color:lightgray;
+	border: 0px solid #0bf;
+	margin:10px;
+	border-top-width: 2px;
+}
+.VM_Table {
+	overflow: auto;
+	max-height: 2000px;
+}
+.VM_VH {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
