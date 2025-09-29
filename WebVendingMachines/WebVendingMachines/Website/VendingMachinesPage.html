@@ -2,23 +2,59 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Торговые автоматы</title>
     <link href="StyleSheet.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="head head_text">
-        <a href="MainPage.html"><p>Главная</p></a>
-        <a><p>Торговые автоматы</p></a>
-        <a><p>Договоры</p></a>
-        <a><p>Настройки</p></a>
+        <a href="MainPage.html"><h3>Главная</h3></a>
+        <a href="VendingMachinesPage.html"><h3>Торговые автоматы</h3></a>
+        <a><h3>Договоры</h3></a>
+        <a><h3>Настройки</h3></a>
     </div>
 
     <div class="MainBlock">
         <div class="VM_Block">
-            <h2>Торговые автоматы</h2>
-            <div id="VendingMachines" class="VMBlock">
-                
+			<div class="TBHeadBlock">
+				<h2>Торговые автоматы</h2>
+                <p id="TBCount"></p>
+			</div>
+            <div id="SelectCount" class="Flex Margin10">
+                <div>
+                    <p>Показать <select>
+                         <option>50</option>
+                         <option>75</option>
+                         <option>100</option>
+                         </select> записей
+                    </p>
+                </div>
+                <textarea id="Search" placeholder="Фильтр"></textarea>
+                <div class="Flex">
+                    <button class="Margin3"><img src="../Resources/icons/black/plus.svg" width="15" />Добавить</button>
+                    <button class="Margin3"><img src="../Resources/icons/black/arrow-right.svg" width="15" />Экспорт</button>
+                </div>
             </div>
+            <div id="VendingMachines" class="VM_Table">
+                <div class="VM_VH">
+                    <p>ID<img src="../Resources/icons/black/arrow-up.svg" width="15"/></p>
+                    <p>Название автомата<img src="../Resources/icons/black/arrow-up.svg" width="15"/></p>
+                    <p>Модель<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>Компания<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>Модем<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>Адресс/Место<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>В работе с<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>Действия</p>
+                </div>
+            </div>
+            <div class="Flex Margin10">
+                <p id="TBSecondCount"></p>
+                <p class="Margin10">
+                    <button onclick="PagePrev()"><</button>
+                    <button id="btnPage" class="BlueButton">1</button>
+                    <button onclick="PageNext()">></button>
+                </p>
+            </div>
+            <div></div>
         </div>
     </div>
 
@@ -32,28 +68,155 @@
                 const data = await response.json()
                 var Block = document.getElementById("VendingMachines")
 
-                while (Block.firstChild) Block.firstChild.remove()
+                while (Block.childElementCount > 1) Block.lastChild.remove()
 
-                for (var i = 0; i < data.length; i++) {
-                    var item = data[i]
+                var btnPage = document.getElementById("btnPage")
+                var page = parseInt(btnPage.textContent)
 
-                    var machine = document.createElement("div")
-                    machine.className = "VM_VH"
-                    Block.appendChild(machine)
 
-                    var id = document.createElement("p");
-                    id.textContent = item.serial_number
-                    machine.appendChild(id)
 
-                    var id = document.createElement("p");
-                    id.textContent = item.name
-                    machine.appendChild(id)
+				var Count = 0
+                var Search = sessionStorage.getItem("Search")
 
+                if (page == 1) {
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i]
+
+                        var WithoutError = false
+                        if (Search == "")
+                            WithoutError = true
+                        else if (item.serial_number.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+                        else if (item.name.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+                        else if (item.ModelsMachine.Model.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+                        else if (item.Companies.company.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+                        else if (item.location.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+                        else if (item.place.toLowerCase().includes(Search.toLowerCase()))
+                            WithoutError = true
+
+                        if (WithoutError) {
+                            var machine = document.createElement("div")
+                            if (i == 0 || i % 2 == 0)
+                                machine.className = "VM_VH WhiteBack"
+                            else
+                                machine.className = "VM_VH"
+                            Block.appendChild(machine)
+
+                            var id = document.createElement("p")
+                            id.textContent = item.serial_number
+                            machine.appendChild(id)
+
+                            var name = document.createElement("p")
+                            name.textContent = item.name
+                            machine.appendChild(name)
+
+                            var model = document.createElement("p")
+                            model.textContent = item.ModelsMachine.Model
+                            machine.appendChild(model)
+
+                            var company = document.createElement("p")
+                            company.textContent = item.Companies.company
+                            machine.appendChild(company)
+
+                            var modem = document.createElement("p")
+                            modem.textContent = item.modem
+                            machine.appendChild(modem)
+
+                            var Adrress = document.createElement("p")
+                            Adrress.textContent = item.location + " " + item.place
+                            machine.appendChild(Adrress)
+
+                            var install_date = document.createElement("p")
+                            var date = new Date(item.install_date)
+
+                            if (date.getDate() < 10)
+                                var Day = "0" + date.getDate()
+                            else
+                                var Day = date.getDate()
+
+                            if (date.getMonth() + 1 < 10)
+                                var Month = "0" + (date.getMonth() + 1)
+                            else
+                                var Month = data.getMonth() + 1
+
+                            install_date.textContent = Day + "." + Month + "." + date.getFullYear()
+                            machine.appendChild(install_date)
+
+                            var imagesBlock = document.createElement("p")
+                            machine.appendChild(imagesBlock)
+                            var image1 = document.createElement("img")
+                            var image2 = document.createElement("img")
+                            var image3 = document.createElement("img")
+                            image1.src = "../Resources/icons/blue/pencil.svg"
+                            image1.width = 25
+                            image2.src = "../Resources/icons/blue/trash.svg"
+                            image2.width = 25
+                            image3.src = "../Resources/icons/blue/lock.svg"
+                            image3.width = 25
+                            imagesBlock.appendChild(image1)
+                            imagesBlock.appendChild(image2)
+                            imagesBlock.appendChild(image3)
+
+                            Count++
+                        }
+                    }
+
+                    var TBCount = document.getElementById("TBCount")
+                    var TBSecondCount = document.getElementById("TBSecondCount")
+
+                    if (Count > 0) {
+                        TBCount.textContent = "Всего найдено " + Count + " шт."
+                        TBSecondCount.textContent = "Записи с 1 до " + Count + " из " + Count + " записей"
+                    }
+                    else {
+                        TBCount.textContent = "Всего найдено 0 шт."
+                        TBSecondCount.textContent = "Записи с 0 до 0 из 0 записей"
+                    }
                 }
             }
             else console.log("error")
         }
+        async function PagePrev() {
+            var btnPage = document.getElementById("btnPage")
+            var page = parseInt(btnPage.textContent)
 
+            if (page > 1) {
+                btnPage.textContent = page - 1
+                LoadData()
+            }
+        }
+		async function PageNext() {
+			var btnPage = document.getElementById("btnPage")
+			var page = parseInt(btnPage.textContent)
+
+			btnPage.textContent = page + 1
+			LoadData()
+        }
+		async function Captcha() {
+			var Captcha = sessionStorage.getItem("Captcha")
+			if (Captcha != "Success") {
+				window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
+			}
+		}
+
+        sessionStorage.setItem("Search", "")
+
+        var Search = document.getElementById("Search")
+		var SelectCount = document.getElementById("SelectCount")
+
+        Search.addEventListener("input", function (e) {
+            sessionStorage.setItem("Search", e.target.value.trim())
+            LoadData()
+        })
+        SelectCount.addEventListener("input", function (e) {
+            LoadData()
+        })
+
+        Captcha()
         LoadData()
     </script>
 </body>

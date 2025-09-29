@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Каптча</title>
+    <link href="StyleSheet.css" rel="stylesheet"/>
+</head>
+<body class="Flex" style="justify-content:center;">
+	<div>
+		<h1>Каптча</h1>
+		<p id="TextCaptcha" style="font-size:20px">Nothing</p>
+		<input id="IAnswer"/>
+		<p>
+			<button onclick="Check()">Проверить</button>
+            <button onclick="Captcha()">
+                Обновить
+                <img src="../Resources/icons/black/repeat.svg" width="7"/>
+            </button>
+		</p>
+	</div>
+    <script>
+        async function Captcha() {
+            var TextPlace = document.getElementById("TextCaptcha")
+            var yes = document.getElementById("asnswer")
+            var operations = "/*-+"
+            var skob = await getRandom(0, 2)
+
+            number1 = await getRandom(1, 10)
+            number2 = await getRandom(1, 10)
+            number3 = await getRandom(1, 10)
+            operation1 = operations[await getRandom(0, 4)]
+            operation2 = operations[await getRandom(0, 4)]
+
+            if (skob) {
+                var fun = "(" + number1 + operation1 + number2 + ")" + operation2 + number3
+                var answer = await Operate(await Operate(number1, operation1, number2), operation2, number3)
+            }
+            else {
+                var fun = number1 + operation1 + "(" + number2 + operation2 + number3 + ")"
+                var answer = await Operate(number1, operation1, await Operate(number2, operation2, number3))
+            }
+
+            TextPlace.textContent = fun
+            sessionStorage.setItem("CaptchaAnswer", answer)
+        }
+        async function Operate(number1, operation, number2) {
+            switch (operation) {
+                case "-":
+                    return number1 - number2
+                    break
+                case "+":
+                    return number1 + number2
+                    break
+                case "*":
+                    return number1 * number2
+                    break
+                default:
+                    return number1 / number2
+                    break
+            }
+        }
+        async function Check() {
+			if (sessionStorage.getItem("CaptchaAnswer") == document.getElementById("IAnswer").value) {
+                sessionStorage.setItem("Captcha", "Success")
+                window.open("https://localhost:44396/Website/MainPage.html", "_self")
+            }
+        }
+        async function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min
+        }
+
+        Captcha()
+    </script>
+</body>
+</html>
