@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Companies">
           <Key>
             <PropertyRef Name="id" />
@@ -45,6 +45,7 @@
           <Property Name="vending_machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id_employee" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="work_description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsAccept" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ModelsMachine">
           <Key>
@@ -677,8 +678,7 @@
             <End Role="VM_Payments" EntitySet="VM_Payments" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_VendingMachinesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -729,6 +729,7 @@
           <Property Name="work_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Maintenance_Users" FromRole="Maintenance" ToRole="Users" />
           <NavigationProperty Name="VendingMachines" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="Maintenance" ToRole="VendingMachines" />
+          <Property Name="IsAccept" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ModelsMachine">
           <Key>
@@ -1372,6 +1373,7 @@
           <EntitySetMapping Name="Maintenance">
             <EntityTypeMapping TypeName="DB_VendingMachinesModel.Maintenance">
               <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="IsAccept" ColumnName="IsAccept" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="issues_found" ColumnName="issues_found" />

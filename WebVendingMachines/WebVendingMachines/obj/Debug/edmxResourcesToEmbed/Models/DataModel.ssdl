@@ -40,6 +40,7 @@
     <Property Name="vending_machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="id_employee" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="work_description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsAccept" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ModelsMachine">
     <Key>

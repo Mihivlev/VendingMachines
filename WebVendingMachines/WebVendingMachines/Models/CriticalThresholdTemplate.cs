@@ -24,7 +24,6 @@ namespace WebVendingMachines.Models
         public int id { get; set; }
         public string critical_threshold_template { get; set; }
 
-
 		[JsonIgnore]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendingMachines> VendingMachines { get; set; }

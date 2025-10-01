@@ -20,6 +20,7 @@ namespace WebVendingMachines.Models
         public string vending_machine_id { get; set; }
         public string id_employee { get; set; }
         public string work_description { get; set; }
+        public bool IsAccept { get; set; }
     
         public virtual Users Users { get; set; }
         public virtual VendingMachines VendingMachines { get; set; }

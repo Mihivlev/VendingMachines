@@ -31,8 +31,6 @@ C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\System.Text.Enco
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\System.Text.Json.xml
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\System.ValueTuple.xml
-C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\ru\EntityFramework.resources.dll
-C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\obj\Debug\MainWindow.baml
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\obj\Debug\Desktop_VendingMachine.g.resources
 C:\prof\Desktop_VendingMachine\Desktop_VendingMachine\obj\Debug\Desktop_VendingMachine.Properties.Resources.resources

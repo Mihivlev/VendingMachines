@@ -37,6 +37,7 @@
     <EntitySetMapping Name="Maintenance">
       <EntityTypeMapping TypeName="DB_VendingMachinesModel.Maintenance">
         <MappingFragment StoreEntitySet="Maintenance">
+          <ScalarProperty Name="IsAccept" ColumnName="IsAccept" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="issues_found" ColumnName="issues_found" />

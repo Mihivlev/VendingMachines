@@ -12,10 +12,10 @@ namespace WebVendingMachines.Models
 	using Newtonsoft.Json;
 	using System;
     using System.Collections.Generic;
-
+    
     public partial class VendingMachines
     {
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VendingMachines()
         {
             this.Events_VM = new HashSet<Events_VM>();
@@ -24,7 +24,7 @@ namespace WebVendingMachines.Models
             this.SettingTypes = new HashSet<SettingTypes>();
             this.PaymentTypes = new HashSet<PaymentTypes>();
         }
-
+    
         public string id { get; set; }
         public string name { get; set; }
         public int company { get; set; }
@@ -58,30 +58,28 @@ namespace WebVendingMachines.Models
         public Nullable<int> kopurs { get; set; }
         public Nullable<int> sdacha { get; set; }
     
-        
         public virtual Companies Companies { get; set; }
-        public virtual ModelsMachine ModelsMachine { get; set; }
-		public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }
-		public virtual Statuses Statuses { get; set; }
-		public virtual NotificationTemplates NotificationTemplates { get; set; }
-		public virtual ServicePriorities ServicePriorities { get; set; }
-
+        public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
+
+		[JsonIgnore]
 		public virtual ICollection<Events_VM> Events_VM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+		[JsonIgnore]
+		public virtual ICollection<Maintenance> Maintenance { get; set; }
+        public virtual ModelsMachine ModelsMachine { get; set; }
+        public virtual NotificationTemplates NotificationTemplates { get; set; }
+
+		[JsonIgnore]
+		public virtual Operators Operators { get; set; }
 
 		[JsonIgnore]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Maintenance> Maintenance { get; set; }
-
-		public virtual Operators Operators { get; set; }
-
-        
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
-		public virtual ICollection<Products> Products { get; set; }
-
-		public virtual Timezones Timezones { get; set; }
+        public virtual ICollection<Products> Products { get; set; }
+        public virtual ServicePriorities ServicePriorities { get; set; }
+        public virtual Statuses Statuses { get; set; }
+        public virtual Timezones Timezones { get; set; }
 
 		[JsonIgnore]
 		public virtual Users Users { get; set; }
@@ -94,15 +92,14 @@ namespace WebVendingMachines.Models
 
 		[JsonIgnore]
 		public virtual Users Users3 { get; set; }
+        public virtual WorkModes WorkModes { get; set; }
 
-		public virtual WorkModes WorkModes { get; set; }
+		[JsonIgnore]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SettingTypes> SettingTypes { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		[JsonIgnore]
-		public virtual ICollection<SettingTypes> SettingTypes { get; set; }
-        
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		[JsonIgnore]
-		public virtual ICollection<PaymentTypes> PaymentTypes { get; set; }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaymentTypes> PaymentTypes { get; set; }
     }
 }

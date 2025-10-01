@@ -38,17 +38,15 @@ namespace WebVendingMachines.Models
 
 		[JsonIgnore]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		
 		public virtual ICollection<Maintenance> Maintenance { get; set; }
+        public virtual Roles Roles { get; set; }
 
-		public virtual Roles Roles { get; set; }
+		[JsonIgnore]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<VendingMachines> VendingMachines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
 		[JsonIgnore]
-		public virtual ICollection<VendingMachines> VendingMachines { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		
-        [JsonIgnore]
 		public virtual ICollection<VendingMachines> VendingMachines1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

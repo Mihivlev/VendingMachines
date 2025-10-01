@@ -47,6 +47,7 @@
     <Property Name="work_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Maintenance_Users" FromRole="Maintenance" ToRole="Users" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="Maintenance" ToRole="VendingMachines" />
+    <Property Name="IsAccept" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ModelsMachine">
     <Key>

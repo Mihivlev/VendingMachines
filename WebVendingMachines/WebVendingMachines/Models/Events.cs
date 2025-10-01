@@ -24,6 +24,7 @@ namespace WebVendingMachines.Models
         public int id { get; set; }
         public string @event { get; set; }
 
+		[JsonIgnore]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Events_VM> Events_VM { get; set; }
     }
