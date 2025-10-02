@@ -12,17 +12,14 @@ namespace WebVendingMachines.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Maintenance
+    public partial class Deals
     {
         public int id { get; set; }
         public System.DateTime date { get; set; }
-        public string issues_found { get; set; }
-        public string vending_machine_id { get; set; }
-        public string id_employee { get; set; }
-        public string work_description { get; set; }
+        public System.DateTime end_date { get; set; }
         public bool is_accept { get; set; }
+        public string user_id { get; set; }
     
         public virtual Users Users { get; set; }
-        public virtual VendingMachines VendingMachines { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace WebVendingMachines.Models
     
         public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<CriticalThresholdTemplate> CriticalThresholdTemplate { get; set; }
+        public virtual DbSet<Deals> Deals { get; set; }
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<Events_VM> Events_VM { get; set; }
         public virtual DbSet<Maintenance> Maintenance { get; set; }

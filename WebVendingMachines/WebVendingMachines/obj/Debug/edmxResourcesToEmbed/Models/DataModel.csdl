@@ -16,6 +16,17 @@
     <Property Name="critical_threshold_template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_CriticalThresholdTemplate" FromRole="CriticalThresholdTemplate" ToRole="VendingMachines" />
   </EntityType>
+  <EntityType Name="Deals">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="is_accept" Type="Boolean" Nullable="false" />
+    <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Deals_Users" FromRole="Deals" ToRole="Users" />
+  </EntityType>
   <EntityType Name="Events">
     <Key>
       <PropertyRef Name="id" />
@@ -45,9 +56,9 @@
     <Property Name="vending_machine_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="id_employee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="work_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="is_accept" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Maintenance_Users" FromRole="Maintenance" ToRole="Users" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_Maintenance_VendingMachines" FromRole="Maintenance" ToRole="VendingMachines" />
-    <Property Name="IsAccept" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="ModelsMachine">
     <Key>
@@ -175,6 +186,7 @@
     <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Deals" Relationship="Self.FK_Deals_Users" FromRole="Users" ToRole="Deals" />
     <NavigationProperty Name="Maintenance" Relationship="Self.FK_Maintenance_Users" FromRole="Users" ToRole="Maintenance" />
     <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
     <NavigationProperty Name="VendingMachines" Relationship="Self.FK_VendingMachines_Users" FromRole="Users" ToRole="VendingMachines" />
@@ -270,6 +282,20 @@
       </Principal>
       <Dependent Role="VendingMachines">
         <PropertyRef Name="critical_threshold_template" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deals_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deals" Type="Self.Deals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Deals">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -538,6 +564,7 @@
   <EntityContainer Name="DB_VendingMachinesEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Companies" EntityType="Self.Companies" />
     <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" />
+    <EntitySet Name="Deals" EntityType="Self.Deals" />
     <EntitySet Name="Events" EntityType="Self.Events" />
     <EntitySet Name="Events_VM" EntityType="Self.Events_VM" />
     <EntitySet Name="Maintenance" EntityType="Self.Maintenance" />
@@ -563,6 +590,10 @@
     <AssociationSet Name="FK_VendingMachines_CriticalThresholdTemplate" Association="Self.FK_VendingMachines_CriticalThresholdTemplate">
       <End Role="CriticalThresholdTemplate" EntitySet="CriticalThresholdTemplate" />
       <End Role="VendingMachines" EntitySet="VendingMachines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deals_Users" Association="Self.FK_Deals_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Deals" EntitySet="Deals" />
     </AssociationSet>
     <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
       <End Role="Events" EntitySet="Events" />

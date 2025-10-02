@@ -17,6 +17,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Deals">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Deals">
+        <MappingFragment StoreEntitySet="Deals">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="is_accept" ColumnName="is_accept" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="DB_VendingMachinesModel.Events">
         <MappingFragment StoreEntitySet="Events">
@@ -37,13 +48,13 @@
     <EntitySetMapping Name="Maintenance">
       <EntityTypeMapping TypeName="DB_VendingMachinesModel.Maintenance">
         <MappingFragment StoreEntitySet="Maintenance">
-          <ScalarProperty Name="IsAccept" ColumnName="IsAccept" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="issues_found" ColumnName="issues_found" />
           <ScalarProperty Name="vending_machine_id" ColumnName="vending_machine_id" />
           <ScalarProperty Name="id_employee" ColumnName="id_employee" />
           <ScalarProperty Name="work_description" ColumnName="work_description" />
+          <ScalarProperty Name="is_accept" ColumnName="is_accept" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

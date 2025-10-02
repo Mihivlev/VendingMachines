@@ -9,7 +9,7 @@
     <div class="head head_text">
         <a href="MainPage.html"><h3>Главная</h3></a>
         <a href="VendingMachinesPage.html"><h3>Торговые автоматы</h3></a>
-        <a><h3>Договоры</h3></a>
+        <a href="DealsPage.html"><h3>Договоры</h3></a>
         <a><h3>Настройки</h3></a>
     </div>
 
@@ -41,13 +41,12 @@
                     var email = document.getElementById("IEmail").value
                     var password = document.getElementById("IPassword").value
 
-
                     for (var i = 0; i < data.length; i++) {
                         var item = data[i]
                         if (email == item.email && password == item.password) {
                             Name.textContent = "Добро пожаловать " + item.full_name
-							sessionStorage.setItem("User_fullName", item.full_name)
-							btnAuthorization.textContent = "Выйти"
+                            sessionStorage.setItem("User_fullName", item.full_name)
+                            btnAuthorization.textContent = "Выйти"
                             ClearAuthorizationBlock()
                         }
                     }

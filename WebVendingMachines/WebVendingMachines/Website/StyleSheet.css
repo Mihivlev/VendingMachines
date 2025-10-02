@@ -116,6 +116,10 @@ dialog {
 	color:white;
 	background-color:#0bf;
 }
+#DealsBlock {
+	overflow:auto;
+	max-height:2000px;
+}
 
 .Margin10 {
 	margin:10px;

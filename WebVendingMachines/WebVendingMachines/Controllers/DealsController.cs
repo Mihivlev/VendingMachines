@@ -12,44 +12,44 @@ using WebVendingMachines.Models;
 
 namespace WebVendingMachines.Controllers
 {
-    public class MaintenancesController : ApiController
+    public class DealsController : ApiController
     {
         private DB_VendingMachinesEntities db = new DB_VendingMachinesEntities();
 
-        // GET: api/Maintenances
-        public IQueryable<Maintenance> GetMaintenance()
+        // GET: api/Deals
+        public IQueryable<Deals> GetDeals()
         {
-            return db.Maintenance;
+            return db.Deals;
         }
 
-        // GET: api/Maintenances/5
-        [ResponseType(typeof(Maintenance))]
-        public IHttpActionResult GetMaintenance(int id)
+        // GET: api/Deals/5
+        [ResponseType(typeof(Deals))]
+        public IHttpActionResult GetDeals(int id)
         {
-            Maintenance maintenance = db.Maintenance.Find(id);
-            if (maintenance == null)
+            Deals deals = db.Deals.Find(id);
+            if (deals == null)
             {
                 return NotFound();
             }
 
-            return Ok(maintenance);
+            return Ok(deals);
         }
 
-        // PUT: api/Maintenances/5
+        // PUT: api/Deals/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMaintenance(int id, Maintenance maintenance)
+        public IHttpActionResult PutDeals(int id, Deals deals)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != maintenance.id)
+            if (id != deals.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(maintenance).State = EntityState.Modified;
+            db.Entry(deals).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace WebVendingMachines.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MaintenanceExists(id))
+                if (!DealsExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace WebVendingMachines.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Maintenances
-        [ResponseType(typeof(Maintenance))]
-        public IHttpActionResult PostMaintenance(Maintenance maintenance)
+        // POST: api/Deals
+        [ResponseType(typeof(Deals))]
+        public IHttpActionResult PostDeals(Deals deals)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Maintenance.Add(maintenance);
+            db.Deals.Add(deals);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = maintenance.id }, maintenance);
+            return CreatedAtRoute("DefaultApi", new { id = deals.id }, deals);
         }
 
-        // DELETE: api/Maintenances/5
-        [ResponseType(typeof(Maintenance))]
-        public IHttpActionResult DeleteMaintenance(int id)
+        // DELETE: api/Deals/5
+        [ResponseType(typeof(Deals))]
+        public IHttpActionResult DeleteDeals(int id)
         {
-            Maintenance maintenance = db.Maintenance.Find(id);
-            if (maintenance == null)
+            Deals deals = db.Deals.Find(id);
+            if (deals == null)
             {
                 return NotFound();
             }
 
-            db.Maintenance.Remove(maintenance);
+            db.Deals.Remove(deals);
             db.SaveChanges();
 
-            return Ok(maintenance);
+            return Ok(deals);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace WebVendingMachines.Controllers
             base.Dispose(disposing);
         }
 
-        private bool MaintenanceExists(int id)
+        private bool DealsExists(int id)
         {
-            return db.Maintenance.Count(e => e.id == id) > 0;
+            return db.Deals.Count(e => e.id == id) > 0;
         }
     }
 }

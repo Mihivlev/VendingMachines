@@ -163,8 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\DealsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MaintenancesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VendingMachinesController.cs" />
@@ -191,6 +191,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deals.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Events.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -271,8 +274,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
       <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -314,6 +317,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Website\BronePage.html" />
     <Content Include="Website\CaptchaPage.html" />
+    <Content Include="Website\DealsPage.html" />
     <Content Include="Website\MainPage.html" />
     <Content Include="Website\StyleSheet.css" />
     <Content Include="Website\VendingMachinesPage.html" />

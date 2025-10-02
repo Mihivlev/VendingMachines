@@ -18,6 +18,7 @@ namespace WebVendingMachines.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.Deals = new HashSet<Deals>();
             this.Maintenance = new HashSet<Maintenance>();
             this.VendingMachines = new HashSet<VendingMachines>();
             this.VendingMachines1 = new HashSet<VendingMachines>();
@@ -35,25 +36,30 @@ namespace WebVendingMachines.Models
         public string phone { get; set; }
         public string image { get; set; }
         public string password { get; set; }
+    
+		[JsonIgnore]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deals> Deals { get; set; }
 
 		[JsonIgnore]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<Maintenance> Maintenance { get; set; }
+        public virtual ICollection<Maintenance> Maintenance { get; set; }
+
         public virtual Roles Roles { get; set; }
 
-		[JsonIgnore]
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<VendingMachines> VendingMachines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		[JsonIgnore]
+		public virtual ICollection<VendingMachines> VendingMachines { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		[JsonIgnore]
 		public virtual ICollection<VendingMachines> VendingMachines1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		[JsonIgnore]
 		public virtual ICollection<VendingMachines> VendingMachines2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		[JsonIgnore]
 		public virtual ICollection<VendingMachines> VendingMachines3 { get; set; }
     }
