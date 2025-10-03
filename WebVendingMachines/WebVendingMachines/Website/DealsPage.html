@@ -17,53 +17,59 @@
 		<div class="VM_Block Padding5 TextAlign">
 			<h2 id="TBName">Договоры</h2>
 			<div id="DealsBlcok">
-				<p>Для просмотра договоров необходимо авторизоваться</p>
 			</div>
 		</div>
     </div>
 
     <script>
         async function Init() {
-            var user = sessionStorage.getItem("User_fullName")
-            if (user != "") {
+			var user = sessionStorage.getItem("User_fullName")
+			var Block = document.getElementById("DealsBlcok")
+            if (user != "" && user != null) {
                 const response = await fetch("https://localhost:44396/api/Deals", {
                     method: "GET",
-                    headers: {'Access':'application/json'}
+                    headers: { 'Access': 'application/json' }
                 })
                 if (response.ok) {
-                    var Block = document.getElementById("DealsBlcok")
                     var data = await response.json()
                     while (Block.firstChild) Block.firstChild.remove()
 
                     for (var i = 0; i < data.length; i++) {
                         var item = data[i]
 
-                        var Deal = document.createElement("div")
-                        Deal.className = ""
-                        Block.appendChild(Deal)
+                        if (item.Users.full_name == user) {
+                            var Deal = document.createElement("div")
+                            Deal.className = "DealVH"
+                            Block.appendChild(Deal)
 
-                        var id = document.createElement("p")
-                        id.textContent = item.id
-                        Deal.appendChild(id)
+                            var id = document.createElement("p")
+                            id.textContent = "Номер договора: " + item.id
+                            Deal.appendChild(id)
 
-                        var date_create = document.createElement("p")
-                        var date = new Date(item.date)
-                        date_create.textContent = AddZero(date.getDate()) + "." + AddZero((date.getMonth() + 1)) + "." + date.getFullYear()
-                        Deal.appendChild(date_create)
+                            var is_accept = document.createElement("p")
+                            if (item.is_accept == true)
+                                is_accept.textContent = "Договор подписан"
+                            else
+                                is_accept.textContent = "Договор не подписан"
+                            Deal.appendChild(is_accept)
 
-                        var end_date = document.createElement("p")
-                        date = new Date(item.end_date)
-                        end_date.textContent = AddZero(date.getDate()) + "." + AddZero((date.getMonth() + 1)) + "." + date.getFullYear()
-                        Deal.appendChild(end_date)
+                            var date_create = document.createElement("p")
+                            var date = new Date(item.date)
+                            date_create.textContent = "Дата подписания договора: " + AddZero(date.getDate()) + "." + AddZero((date.getMonth() + 1)) + "." + date.getFullYear()
+                            Deal.appendChild(date_create)
 
-                        var is_accept = document.createElement("p")
-                        if (item.is_accept == "True")
-                            is_accept.textContent = "Подписано"
-                        else
-                            is_accept.textContent = "Не подписано"
-                        Deal.appendChild(is_accept)
+                            var end_date = document.createElement("p")
+                            date = new Date(item.end_date)
+                            end_date.textContent = "Дата окончания действия договора: " + AddZero(date.getDate()) + "." + AddZero((date.getMonth() + 1)) + "." + date.getFullYear()
+                            Deal.appendChild(end_date)
+                        }
                     }
                 }
+            }
+            else {
+                var text = document.createElement("p")
+                text.textContent = "Для просмотра договоров необходимо авторизоваться"
+                Block.appendChild(text)
             }
         }
         function AddZero(number) {
