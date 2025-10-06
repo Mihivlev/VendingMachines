@@ -25,6 +25,7 @@ namespace WebVendingMachines.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Brones> Brones { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<CriticalThresholdTemplate> CriticalThresholdTemplate { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }

@@ -17,8 +17,9 @@ namespace WebVendingMachines.Models
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VendingMachines()
-        {
-            this.Events_VM = new HashSet<Events_VM>();
+		{
+			this.Brones = new HashSet<Brones>();
+			this.Events_VM = new HashSet<Events_VM>();
             this.Maintenance = new HashSet<Maintenance>();
             this.Products = new HashSet<Products>();
             this.SettingTypes = new HashSet<SettingTypes>();
@@ -57,8 +58,13 @@ namespace WebVendingMachines.Models
         public Nullable<int> monets { get; set; }
         public Nullable<int> kopurs { get; set; }
         public Nullable<int> sdacha { get; set; }
-    
-        public virtual Companies Companies { get; set; }
+
+
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
+		public virtual ICollection<Brones> Brones { get; set; }
+
+		public virtual Companies Companies { get; set; }
         public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

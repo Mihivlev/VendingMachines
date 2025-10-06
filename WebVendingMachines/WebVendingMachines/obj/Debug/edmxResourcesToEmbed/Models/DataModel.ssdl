@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vm_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="Companies">
     <Key>
       <PropertyRef Name="id" />
@@ -19,7 +28,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="date" Type="date" />
     <Property Name="end_date" Type="date" Nullable="false" />
     <Property Name="is_accept" Type="bit" Nullable="false" />
     <Property Name="user_id" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -225,6 +234,30 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="mode" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Brones_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Brones" Type="Self.Brones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Brones">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Brones_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+    <End Role="Brones" Type="Self.Brones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Brones">
+        <PropertyRef Name="vm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Deals_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -574,6 +607,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Хранилище DB_VendingMachinesModelContainer">
+    <EntitySet Name="Brones" EntityType="Self.Brones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
@@ -597,6 +631,14 @@
     <EntitySet Name="VendingMachines" EntityType="Self.VendingMachines" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VM_Payments" EntityType="Self.VM_Payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkModes" EntityType="Self.WorkModes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Brones_Users" Association="Self.FK_Brones_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Brones" EntitySet="Brones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Brones_VendingMachines" Association="Self.FK_Brones_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Brones" EntitySet="Brones" />
+    </AssociationSet>
     <AssociationSet Name="FK_Deals_Users" Association="Self.FK_Deals_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Deals" EntitySet="Deals" />

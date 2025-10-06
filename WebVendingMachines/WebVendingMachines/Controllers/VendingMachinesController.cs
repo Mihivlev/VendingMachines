@@ -29,10 +29,10 @@ namespace WebVendingMachines.Controllers
             }
 
             return Ok(vendingMachines);
-        }
+		}
 
-        // PUT: api/VendingMachines/5
-        [ResponseType(typeof(void))]
+		// PUT: api/VendingMachines/5
+		[ResponseType(typeof(void))]
         public IHttpActionResult PutVendingMachines(string id, VendingMachines vendingMachines)
         {
             if (!ModelState.IsValid)

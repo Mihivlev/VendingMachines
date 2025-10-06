@@ -22,6 +22,12 @@
     </div>
 
     <script>
+		async function Captcha() {
+			var Captcha = sessionStorage.getItem("Captcha")
+			if (Captcha != "Success") {
+				window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
+			}
+		}
         async function Init() {
 			var user = sessionStorage.getItem("User_fullName")
 			var Block = document.getElementById("DealsBlcok")
@@ -39,7 +45,7 @@
 
                         if (item.Users.full_name == user) {
                             var Deal = document.createElement("div")
-                            Deal.className = "DealVH"
+							Deal.className = "DealVH GridTwoColumns"
                             Block.appendChild(Deal)
 
                             var id = document.createElement("p")
@@ -80,6 +86,7 @@
         }
 
         Init()
+        Captcha()
     </script>
 </body>
 </html>

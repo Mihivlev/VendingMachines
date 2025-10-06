@@ -12,20 +12,21 @@ namespace WebVendingMachines.Models
 	using Newtonsoft.Json;
 	using System;
     using System.Collections.Generic;
-    
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
-        {
-            this.Deals = new HashSet<Deals>();
+		{
+			this.Brones = new HashSet<Brones>();
+			this.Deals = new HashSet<Deals>();
             this.Maintenance = new HashSet<Maintenance>();
             this.VendingMachines = new HashSet<VendingMachines>();
             this.VendingMachines1 = new HashSet<VendingMachines>();
             this.VendingMachines2 = new HashSet<VendingMachines>();
             this.VendingMachines3 = new HashSet<VendingMachines>();
         }
-    
+
         public string id { get; set; }
         public string full_name { get; set; }
         public string email { get; set; }
@@ -36,7 +37,12 @@ namespace WebVendingMachines.Models
         public string phone { get; set; }
         public string image { get; set; }
         public string password { get; set; }
-    
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
+		public virtual ICollection<Brones> Brones { get; set; }
+
 		[JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deals> Deals { get; set; }

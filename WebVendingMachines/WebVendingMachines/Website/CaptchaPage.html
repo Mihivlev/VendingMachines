@@ -21,7 +21,7 @@
 
 	<dialog id="dialog">
 		<p></p>
-		<button class="Padding5" onclick="CLoseDialog()"></button>
+		<button class="Padding5" onclick="CloseDialog()"></button>
 	</dialog>
 
 	<script>
@@ -84,7 +84,7 @@
 		async function getRandom(min, max) {
 			return Math.floor(Math.random() * (max - min)) + min
 		}
-		async function CLoseDialog() {
+		async function CloseDialog() {
 			var dialog = document.getElementById("dialog")
 			if (sessionStorage.getItem("CaptchaAnswer") == document.getElementById("IAnswer").value) {
 				window.open("https://localhost:44396/Website/MainPage.html", "_self")

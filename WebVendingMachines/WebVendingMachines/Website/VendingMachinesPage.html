@@ -15,17 +15,18 @@
 
     <div class="MainBlock">
         <div class="VM_Block">
-			<div class="TBHeadBlock">
-				<h2>Торговые автоматы</h2>
+            <div class="TBHeadBlock">
+                <h2>Торговые автоматы</h2>
                 <p id="TBCount"></p>
-			</div>
+            </div>
             <div id="SelectCount" class="Flex Margin10">
                 <div>
-                    <p>Показать <select>
-                         <option>50</option>
-                         <option>75</option>
-                         <option>100</option>
-                         </select> записей
+                    <p>
+                        Показать <select>
+                            <option>50</option>
+                            <option>75</option>
+                            <option>100</option>
+                        </select> записей
                     </p>
                 </div>
                 <textarea id="Search" placeholder="Фильтр"></textarea>
@@ -36,8 +37,8 @@
             </div>
             <div id="VendingMachines" class="VM_Table">
                 <div class="VM_VH">
-                    <p>ID<img src="../Resources/icons/black/arrow-up.svg" width="15"/></p>
-                    <p>Название автомата<img src="../Resources/icons/black/arrow-up.svg" width="15"/></p>
+                    <p>ID<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
+                    <p>Название автомата<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
                     <p>Модель<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
                     <p>Компания<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
                     <p>Модем<img src="../Resources/icons/black/arrow-up.svg" width="15" /></p>
@@ -56,7 +57,35 @@
             </div>
             <div></div>
         </div>
+
+        <div class="VM_Block TextAlign">
+            <h2>Бронирование ТА</h2>
+            <button onclick="OpenBroneDialog()" class="Margin10">Перейти к бронированию</button>
+        </div>
     </div>
+
+    <dialog id="Dialog" width="80%">
+        <h2>Бронирование</h2>
+        <div id="DialogBody">
+			<div class="GridTwoColumns">
+				<p>Номер ТА:</p>
+				<input id="VMNumber" />
+				<p>Начало брони:</p>
+				<input id="BroneDate" type="date" />
+				<p>Конец брони:</p>
+				<input type="date" />
+				<p>Тип владения</p>
+				<select>
+					<option>покупка</option>
+					<option>аренда</option>
+				</select>
+				<p>Страхование</p>
+				<input type="checkbox" />
+			</div>
+            <button class="Margin10" onclick="Brone()">Забронировать</button>
+        </div>
+        <button onclick="CloseDialog()">Закрыть диалог</button>
+    </dialog>
 
     <script>
         async function LoadData() {
@@ -187,19 +216,89 @@
                 LoadData()
             }
         }
-		async function PageNext() {
-			var btnPage = document.getElementById("btnPage")
-			var page = parseInt(btnPage.textContent)
+        async function PageNext() {
+            var btnPage = document.getElementById("btnPage")
+            var page = parseInt(btnPage.textContent)
 
-			btnPage.textContent = page + 1
-			LoadData()
+            btnPage.textContent = page + 1
+            LoadData()
         }
-		async function Captcha() {
-			var Captcha = sessionStorage.getItem("Captcha")
-			if (Captcha != "Success") {
-				window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
-			}
-		}
+        async function Captcha() {
+            var Captcha = sessionStorage.getItem("Captcha")
+            if (Captcha != "Success") {
+                window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
+            }
+        }
+        async function OpenBroneDialog() {
+            var Dialog = document.getElementById("Dialog")
+            if (sessionStorage.getItem("User_fullName") == null || sessionStorage.getItem("User_fullName") == "") {
+                var DialogBody = document.getElementById("DialogBody")
+                while (DialogBody.firstChild) DialogBody.firstChild.remove()
+
+                var text = document.createElement("p")
+                text.textContent = "Сначало необходимо авторизоваться"
+                DialogBody.append(text)
+            }
+            Dialog.showModal()
+        }
+        async function CloseDialog() {
+            var Dialog = document.getElementById("Dialog")
+            Dialog.close()
+        }
+        async function Brone() {
+            var Number = document.getElementById("VMNumber").value
+            var isFind = false
+            var isBrone = false
+
+            const response = await fetch("https://localhost:44396/api/VendingMachines", {
+                method: "GET",
+                headers: { 'Access': 'application/json' }
+            })
+            if (response.ok) {
+                var data = await response.json()
+                for (var i = 0; i < data.length; i++) {
+                    var Item = data[i]
+                    if (Item.serial_number == Number) {
+                        isFind = true
+                        Number = Item.id
+                        break
+                    }
+                }
+            }
+
+            const responseBrones = await fetch("https://localhost:44396/api/Brones", {
+                method: "GET",
+                headers: { 'Access': 'application/json' }
+            })
+            if (response.ok) {
+                var data = await responseBrones.json()
+                for (var i = 0; i < data.length; i++) {
+                    var Item = data[i]
+                    if (Item.vm_id == Number) isBrone = true
+                }
+            }
+
+
+            if (isFind) {
+                if (isBrone) alert("Данные ТА уже забронирован")
+                else {
+                    var BroneDate = document.getElementById("BroneDate").value
+                    const postBrone = await fetch("https://localhost:44396/api/Brones", {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            "vm_id": Number,
+                            "user_id": "01f0b7d3-9b64-49d0-b63e-9190d736d091",
+                            "date": BroneDate
+                        })
+                    })
+                    if (postBrone.ok) alert("ТА успешно забронирован")
+                    postBrone.json()
+                }
+            }
+            else
+                alert("Данные ТА не найден")
+        }
 
         sessionStorage.setItem("Search", "")
 
