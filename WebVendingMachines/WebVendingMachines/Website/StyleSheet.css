@@ -117,6 +117,16 @@ dialog {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-row-gap: 10px;
+	width: 600px;
+}
+#CalendarGrid {
+	display: grid;
+	margin: 10px;
+	width: 700px;
+	justify-self: center;
+	border: 2px solid black;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .Flex {
 	display: flex;
@@ -145,6 +155,12 @@ dialog {
 }
 .BorderGreen {
 	border-color: green;
+}
+.GreenText {
+	color:green;
+}
+.RedText {
+	color:red;
 }
 .BorderRed {
 	border-color: red;

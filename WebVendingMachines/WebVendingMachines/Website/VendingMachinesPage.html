@@ -83,6 +83,7 @@
 				<input type="checkbox" />
 			</div>
             <button class="Margin10" onclick="Brone()">Забронировать</button>
+            <button class="Margin10" onclick="ToCalendar()">Перейти к календарю</button>
         </div>
         <button onclick="CloseDialog()">Закрыть диалог</button>
     </dialog>
@@ -283,12 +284,13 @@
                 if (isBrone) alert("Данные ТА уже забронирован")
                 else {
                     var BroneDate = document.getElementById("BroneDate").value
+					var id = sessionStorage.getItem("User_id")
                     const postBrone = await fetch("https://localhost:44396/api/Brones", {
                         method: "POST",
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             "vm_id": Number,
-                            "user_id": "01f0b7d3-9b64-49d0-b63e-9190d736d091",
+                            "user_id": id,
                             "date": BroneDate
                         })
                     })
@@ -298,6 +300,9 @@
             }
             else
                 alert("Данные ТА не найден")
+        }
+        async function ToCalendar() {
+			window.open("https://localhost:44396/Website/BronePage.html", "_self")
         }
 
         sessionStorage.setItem("Search", "")

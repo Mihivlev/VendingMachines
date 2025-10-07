@@ -45,7 +45,8 @@
                         var item = data[i]
                         if (email == item.email && password == item.password) {
                             Name.textContent = "Добро пожаловать " + item.full_name
-                            sessionStorage.setItem("User_fullName", item.full_name)
+							sessionStorage.setItem("User_fullName", item.full_name)
+							sessionStorage.setItem("User_id", item.id)
                             btnAuthorization.textContent = "Выйти"
                             ClearAuthorizationBlock()
                         }
@@ -53,7 +54,8 @@
                 }
             }
             else {
-                sessionStorage.setItem("User_fullName", "")
+                sessionStorage.setItem("User_fullName", null)
+                sessionStorage.setItem("User_id", null)
                 btnAuthorization.textContent = "Войти"
                 Name.textContent = "Авторизация"
                 Init()

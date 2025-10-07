@@ -9,19 +9,92 @@
     <div class="head head_text">
         <a href="MainPage.html"><h3>Главная</h3></a>
         <a href="VendingMachinesPage.html"><h3>Торговые автоматы</h3></a>
-        <a><h3>Договоры</h3></a>
+        <a href="DealsPage.html"><h3>Договоры</h3></a>
         <a><h3>Настройки</h3></a>
     </div>
 
     <div class="MainBlock">
-        <div class="VM_Block">
+        <div class="VM_Block TextAlign">
             <div class="TBHeadBlock TextAlign">
-                <h2>Бронирование ТА</h2>
+                <h2>Бронирование ТА в календаре</h2>
             </div>
-            <div class="CalendarGrid">
-                
+            <p>Выбран ТА с номером:<select id="VMSelect" class="Margin10 Padding5"></select></p>
+            <div id="CalendarGrid">
+                <p>Пн</p>
+                <p>Вт</p>
+                <p>Ср</p>
+                <p>Чт</p>
+                <p>Пт</p>
+                <p>Сб</p>
+                <p>Вс</p>
             </div>
         </div>
     </div>
+
+    <script>
+        async function Init() {
+            var Block = document.getElementById("CalendarGrid")
+
+            var date = new Date()
+            var Month = date.getMonth()
+            date.setDate(1)
+
+            if (date.getDay() == 0) {
+                for (var i = 0; i < 7; i++) {
+                    var EmptyCell = document.createElement("p")
+                    Block.appendChild(EmptyCell)
+                }
+            }
+            else {
+                for (var i = 1; i < date.getDay(); i++) {
+                    var EmptyCell = document.createElement("p")
+                    Block.appendChild(EmptyCell)
+                }
+            }
+
+            for (var i = 1, ThisMonth = true; ThisMonth == true; i++) {
+                var Cell = document.createElement("p")
+                Cell.textContent = i
+                Cell.className = "GreenText"
+                Cell.id = "Cell" + i
+                Block.appendChild(Cell)
+                date.setDate(1 + i)
+                if (date.getMonth() != Month)
+                    ThisMonth = false
+            }
+
+
+			const response = await fetch("https://localhost:44396/api/VendingMachines", {
+				method: "GET",
+				headers: { 'Content-Type': 'aplication/json' }
+            })
+            if (response.ok) {
+                var data = await response.json()
+				var VMSelect = document.getElementById("VMSelect")
+                for (var i = 0; i < data.length; i++) {
+                    var Item = data[i]
+                    var VM = document.createElement("option")
+                    VM.textContent = Item.serial_number
+                    VM.id = Item.id
+                    VMSelect.appendChild(VM)
+                }
+            }
+            const responseBrone = await fetch("https://localhost:44396/api/Brones", {
+                method: "GET",
+                headers: { 'Content-Type': 'aplication/json' }
+            })
+			if (responseBrone.ok) {
+				var data = await responseBrone.json()
+                for (var i = 0; i < data.length; i++) {
+                    var Item = data[i]
+                    var BroneDate = new Date(Item.date)
+                    var Cell = document.getElementById("Cell" + BroneDate.getDate())
+                    Cell.className = "RedText"
+                }
+            }
+        }
+
+        Init()
+    </script>
 </body>
 </html>
