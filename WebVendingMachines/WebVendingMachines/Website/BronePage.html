@@ -92,8 +92,15 @@
                     Cell.className = "RedText"
                 }
             }
-        }
+		}
+		async function Captcha() {
+			var Captcha = sessionStorage.getItem("Captcha")
+			if (Captcha != "Success") {
+				window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
+			}
+		}
 
+        Captcha()
         Init()
     </script>
 </body>
