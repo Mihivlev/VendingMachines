@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -35,8 +36,18 @@ namespace WebVendingMachines.Controllers
             return Ok(users);
         }
 
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
+		// GET: api/Users/
+        [Route("api/User/{email}/{password}")]
+		public IHttpActionResult GetUser(string email, string password)
+		{
+            Users user = db.Users.ToList().FirstOrDefault(x => x.email == email && x.password == password);
+            if (user != null)
+                return Ok(user);
+			return NotFound();
+		}
+
+		// PUT: api/Users/5
+		[ResponseType(typeof(void))]
         public IHttpActionResult PutUsers(string id, Users users)
         {
             if (!ModelState.IsValid)
