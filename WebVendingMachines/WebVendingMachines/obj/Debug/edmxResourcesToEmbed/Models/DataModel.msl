@@ -256,5 +256,15 @@
         <ScalarProperty Name="id" ColumnName="vm_id" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Notes">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

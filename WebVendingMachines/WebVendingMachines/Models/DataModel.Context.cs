@@ -47,5 +47,6 @@ namespace WebVendingMachines.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<VendingMachines> VendingMachines { get; set; }
         public virtual DbSet<WorkModes> WorkModes { get; set; }
+        public virtual DbSet<Notes> Notes { get; set; }
     }
 }

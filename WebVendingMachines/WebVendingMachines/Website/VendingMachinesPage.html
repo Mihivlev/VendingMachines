@@ -90,7 +90,7 @@
 
     <script>
         async function LoadData() {
-            const response = await fetch("https://localhost:44396/api/VendingMachines", {
+            const response = await fetch("http://localhost:44396/api/VendingMachines", {
                 method: "GET",
                 headers: { 'Access': 'aplication/json' }
             })
@@ -227,7 +227,7 @@
         async function Captcha() {
             var Captcha = sessionStorage.getItem("Captcha")
             if (Captcha != "Success") {
-                window.open("https://localhost:44396/Website/CaptchaPage.html", "_self")
+                window.open("http://localhost:44396/Website/CaptchaPage.html", "_self")
             }
         }
         async function OpenBroneDialog() {
@@ -302,7 +302,7 @@
                 alert("Данные ТА не найден")
         }
         async function ToCalendar() {
-			window.open("https://localhost:44396/Website/BronePage.html", "_self")
+			window.open("http://localhost:44396/Website/BronePage.html", "_self")
         }
 
         sessionStorage.setItem("Search", "")

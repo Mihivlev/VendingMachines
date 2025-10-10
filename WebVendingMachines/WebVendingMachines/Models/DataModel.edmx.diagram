@@ -53,6 +53,8 @@
         <AssociationConnector Association="DB_VendingMachinesModel.FK_VendingMachines_WorkModes" ManuallyRouted="false" />
         <AssociationConnector Association="DB_VendingMachinesModel.Settings_VM" ManuallyRouted="false" />
         <AssociationConnector Association="DB_VendingMachinesModel.VM_Payments" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_VendingMachinesModel.Notes" Width="1.5" PointX="6" PointY="37.375" />
+        <AssociationConnector Association="DB_VendingMachinesModel.FK_Notes_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

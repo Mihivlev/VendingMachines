@@ -28,11 +28,12 @@ public class AuthorizationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
+                    Api.user = response.body();
                     Intent intent = new Intent(AuthorizationActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
                 else
-                    Toast.makeText(AuthorizationActivity.this, "faq", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AuthorizationActivity.this, "Данный пользователь не найден", Toast.LENGTH_LONG).show();
             }
 
             @Override

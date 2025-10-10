@@ -25,7 +25,8 @@ namespace WebVendingMachines.Models
             this.VendingMachines1 = new HashSet<VendingMachines>();
             this.VendingMachines2 = new HashSet<VendingMachines>();
             this.VendingMachines3 = new HashSet<VendingMachines>();
-        }
+			this.Notes = new HashSet<Notes>();
+		}
 
         public string id { get; set; }
         public string full_name { get; set; }
@@ -68,5 +69,9 @@ namespace WebVendingMachines.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 		[JsonIgnore]
 		public virtual ICollection<VendingMachines> VendingMachines3 { get; set; }
-    }
+
+        [JsonIgnore]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+		public virtual ICollection<Notes> Notes { get; set; }
+	}
 }

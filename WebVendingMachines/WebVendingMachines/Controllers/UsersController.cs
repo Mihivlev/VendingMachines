@@ -46,6 +46,16 @@ namespace WebVendingMachines.Controllers
 			return NotFound();
 		}
 
+		// GET: api/Users/
+		[Route("api/Users/{id}/Notes")]
+		public IHttpActionResult GetNotes(string id)
+		{
+			Users user = db.Users.Find(id);
+			if (user != null)
+				return Ok(user.Notes);
+			return NotFound();
+		}
+
 		// PUT: api/Users/5
 		[ResponseType(typeof(void))]
         public IHttpActionResult PutUsers(string id, Users users)

@@ -205,6 +205,7 @@
     <NavigationProperty Name="VendingMachines1" Relationship="Self.FK_VendingMachines_Users1" FromRole="Users" ToRole="VendingMachines" />
     <NavigationProperty Name="VendingMachines2" Relationship="Self.FK_VendingMachines_Users2" FromRole="Users" ToRole="VendingMachines" />
     <NavigationProperty Name="VendingMachines3" Relationship="Self.FK_VendingMachines_Users3" FromRole="Users" ToRole="VendingMachines" />
+    <NavigationProperty Name="Notes" Relationship="DB_VendingMachinesModel.FK_Notes_Users" FromRole="Users" ToRole="Notes" />
   </EntityType>
   <EntityType Name="VendingMachines">
     <Key>
@@ -725,5 +726,32 @@
       <End Role="PaymentTypes" EntitySet="PaymentTypes" />
       <End Role="VendingMachines" EntitySet="VendingMachines" />
     </AssociationSet>
+    <EntitySet Name="Notes" EntityType="DB_VendingMachinesModel.Notes" />
+    <AssociationSet Name="FK_Notes_Users" Association="DB_VendingMachinesModel.FK_Notes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="creator_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="DB_VendingMachinesModel.FK_Notes_Users" FromRole="Notes" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Notes_Users">
+    <End Type="DB_VendingMachinesModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="DB_VendingMachinesModel.Notes" Role="Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="creator_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

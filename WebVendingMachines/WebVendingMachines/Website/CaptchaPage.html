@@ -87,7 +87,7 @@
 		async function CloseDialog() {
 			var dialog = document.getElementById("dialog")
 			if (sessionStorage.getItem("CaptchaAnswer") == document.getElementById("IAnswer").value) {
-				window.open("https://localhost:44396/Website/MainPage.html", "_self")
+				window.open("http://localhost:44396/Website/MainPage.html", "_self")
 			}
 			else {
 				dialog.close()

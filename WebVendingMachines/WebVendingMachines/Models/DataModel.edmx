@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brones">
           <Key>
             <PropertyRef Name="id" />
@@ -72,6 +72,15 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="creator_id" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="NotificationTemplates">
           <Key>
@@ -324,6 +333,18 @@
             </Principal>
             <Dependent Role="Maintenance">
               <PropertyRef Name="vending_machine_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="creator_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -620,6 +641,7 @@
           <EntitySet Name="Events_VM" EntityType="Self.Events_VM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Operators" EntityType="Self.Operators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
@@ -663,6 +685,10 @@
           <AssociationSet Name="FK_Maintenance_VendingMachines" Association="Self.FK_Maintenance_VendingMachines">
             <End Role="VendingMachines" EntitySet="VendingMachines" />
             <End Role="Maintenance" EntitySet="Maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notes_Users" Association="Self.FK_Notes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notes" EntitySet="Notes" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_VendingMachines" Association="Self.FK_Products_VendingMachines">
             <End Role="VendingMachines" EntitySet="VendingMachines" />
@@ -749,8 +775,7 @@
             <End Role="VM_Payments" EntitySet="VM_Payments" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_VendingMachinesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -959,6 +984,7 @@
           <NavigationProperty Name="VendingMachines1" Relationship="Self.FK_VendingMachines_Users1" FromRole="Users" ToRole="VendingMachines" />
           <NavigationProperty Name="VendingMachines2" Relationship="Self.FK_VendingMachines_Users2" FromRole="Users" ToRole="VendingMachines" />
           <NavigationProperty Name="VendingMachines3" Relationship="Self.FK_VendingMachines_Users3" FromRole="Users" ToRole="VendingMachines" />
+          <NavigationProperty Name="Notes" Relationship="DB_VendingMachinesModel.FK_Notes_Users" FromRole="Users" ToRole="Notes" />
         </EntityType>
         <EntityType Name="VendingMachines">
           <Key>
@@ -1479,7 +1505,34 @@
             <End Role="PaymentTypes" EntitySet="PaymentTypes" />
             <End Role="VendingMachines" EntitySet="VendingMachines" />
           </AssociationSet>
+          <EntitySet Name="Notes" EntityType="DB_VendingMachinesModel.Notes" />
+          <AssociationSet Name="FK_Notes_Users" Association="DB_VendingMachinesModel.FK_Notes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="creator_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DB_VendingMachinesModel.FK_Notes_Users" FromRole="Notes" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Notes_Users">
+          <End Type="DB_VendingMachinesModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="DB_VendingMachinesModel.Notes" Role="Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="creator_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1741,6 +1794,16 @@
               <ScalarProperty Name="id" ColumnName="vm_id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="DB_VendingMachinesModel.Notes">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="creator_id" ColumnName="creator_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
