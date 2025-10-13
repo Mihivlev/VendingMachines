@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NotesActivity">
+    tools:context=".MaintenanceActivity">
 
     <TextView
-        android:id="@+id/TVNotes"
-        android:text="Ваши Заметки"
+        android:id="@+id/TVMaintenance"
+        android:text="Ваши отчеты"
         android:layout_margin="5sp"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -18,24 +18,12 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RVNotes"
+        android:id="@+id/RVMaintenance"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
-        app:layout_constraintTop_toBottomOf="@id/TVNotes"
-        tools:listitem="@layout/note" />
-
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="10sp"
-        android:layout_marginHorizontal="20sp"
-        android:onClick="NewNote"
-        android:text="Добавить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/TVMaintenance"
+        tools:listitem="@layout/maintenance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

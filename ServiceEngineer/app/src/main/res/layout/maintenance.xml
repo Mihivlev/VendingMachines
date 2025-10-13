@@ -8,8 +8,8 @@
     android:background="#FF6750A3">
 
     <TextView
-        android:id="@+id/NoteTitle"
-        android:text="Title"
+        android:id="@+id/MaintenanceDate"
+        android:text="Date"
         android:textSize="25sp"
         android:textColor="@color/white"
         android:textAlignment="center"
@@ -19,13 +19,24 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/NoteText"
-        android:text="Text"
+        android:id="@+id/MaintenanceVA"
+        android:text="VA"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:layout_margin="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/MaintenanceDate"/>
+
+    <TextView
+        android:id="@+id/MaintenanceWorkDescription"
+        android:text="Work description"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_margin="5sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/NoteTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/MaintenanceVA"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

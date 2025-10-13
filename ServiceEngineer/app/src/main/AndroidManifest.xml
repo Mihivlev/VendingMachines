@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MaintenanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeletingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ModalNote"
+            android:exported="false" />
+        <activity
             android:name=".NotesActivity"
             android:exported="false" />
         <activity

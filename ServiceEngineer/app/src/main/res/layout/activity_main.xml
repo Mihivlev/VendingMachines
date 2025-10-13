@@ -9,6 +9,7 @@
     <TextView
         android:text="Main"
         android:textSize="25sp"
+        android:textColor="#FF6750A3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#efefef"
+        android:background="#FF6750A3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -34,7 +35,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="📷"
-            android:textSize="28sp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/TVVideo"
@@ -45,7 +46,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="🎥"
-            android:textSize="28sp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/TVRed"
@@ -56,17 +57,18 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="📝"
-            android:textSize="28sp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/TVArchive"
-            android:padding="30sp"
+            android:onClick="ToMaintenance"
+            android:text="🗂"
             android:textAlignment="center"
+            android:padding="30sp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="🗂"
-            android:textSize="28sp"/>
+            android:textSize="30sp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

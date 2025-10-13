@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AuthorizationActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -18,85 +20,91 @@
 
             <TextView
                 android:id="@+id/TVTitle"
-                android:layout_margin="40sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="40sp"
                 android:text="Авторизация"
                 android:textSize="28sp"
+                android:textColor="#FF6750A3"
                 app:layout_constraintBottom_toTopOf="@id/TVEmail"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/TVEmail"
-                android:text="Email:"
-                android:textSize="20sp"
-                android:layout_marginVertical="10sp"
-                android:layout_marginHorizontal="40sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40sp"
+                android:layout_marginVertical="10sp"
+                android:text="Email:"
+                android:textColor="#FF6750A3"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/IEmail"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <EditText
                 android:id="@+id/IEmail"
-                android:textSize="20sp"
-                android:hint="email"
-                android:layout_marginVertical="10sp"
-                android:layout_marginHorizontal="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30sp"
+                android:layout_marginVertical="10sp"
+                android:hint="email"
+                android:textSize="20sp"
+                android:textColor="#FF6750A3"
                 app:layout_constraintBottom_toTopOf="@id/TVPassword"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
                 android:id="@+id/TVPassword"
-                android:text="Пароль: "
-                android:textSize="20sp"
-                android:layout_marginVertical="10sp"
-                android:layout_marginHorizontal="40sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginHorizontal="40sp"
+                android:layout_marginVertical="10sp"
+                android:text="Пароль: "
+                android:textSize="20sp"
+                android:textColor="#FF6750A3"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/IPassword"
-                android:textSize="20sp"
-                android:hint="password"
-                android:inputType="textPassword"
-                android:layout_marginVertical="10sp"
-                android:layout_marginHorizontal="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/TVPassword"
+                android:layout_marginHorizontal="30sp"
+                android:layout_marginVertical="10sp"
+                android:hint="password"
+                android:inputType="textPassword"
+                android:textSize="20sp"
+                android:textColor="#FF6750A3"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TVPassword" />
 
             <Button
                 android:id="@+id/btnEnter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:onClick="Enter"
                 android:text="Войти"
                 android:textSize="20sp"
-                android:onClick="Enter"
-                android:layout_margin="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/IPassword"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
-
-            <Button
-                android:id="@+id/btnChangePassword"
-                android:text="password"
-                android:layout_margin="10sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/IPassword" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="Забыли пароль?"
+        android:textSize="20sp"
+        android:textColor="#FF6750A3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

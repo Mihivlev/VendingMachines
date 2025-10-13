@@ -6,7 +6,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public class Api {
@@ -22,6 +25,14 @@ public class Api {
         Call<Users> GetUser(@Path("email") String email,@Path("password") String password);
         @GET("Users/{id}/Notes")
         Call<List<Notes>> GetNotes(@Path("id") String id);
+        @POST("Notes")
+        Call<Notes> PostNote(@Body Notes note);
+        @DELETE("Notes/{id}")
+        Call<Notes> DeleteNote(@Path("id") int id);
+        @GET("Users/{id}/Maintenance")
+        Call<List<Maintenance>> GetMaintenance(@Path("id") String id);
+        @GET("VendingMachines")
+        Call<List<VendingMachines>> GetVA();
     }
 
     public static ApiService service = retrofit.create(Api.ApiService.class);

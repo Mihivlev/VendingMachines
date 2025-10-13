@@ -1,6 +1,7 @@
 package com.example.serviceenineer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,13 +31,24 @@ public class NotesActivity extends AppCompatActivity {
         context = this;
 
         RecyclerView view = findViewById(R.id.RVNotes);
-        adapter = new NotesAdapter(context, notesList);
+        NotesAdapter.onNoteListener listener = new NotesAdapter.onNoteListener() {
+            @Override
+            public void onNoteListener(int id, String title) {
+                Intent deleteNote = new Intent(context, DeletingActivity.class);
+                deleteNote.putExtra("id",id);
+                deleteNote.putExtra("name",title);
+                startActivity(deleteNote);
+            }
+        };
+
+        adapter = new NotesAdapter(context, notesList, listener);
         view.setAdapter(adapter);
 
         LoadData();
     }
-    public void UpdateData(View view){
-        LoadData();
+    public void NewNote(View view){
+        Intent modalNoteActivity = new Intent(context, ModalNote.class);
+        startActivity(modalNoteActivity);
     }
     public void LoadData(){
         Api.service.GetNotes(Api.user.getId()).enqueue(new Callback<List<Notes>>() {
@@ -56,5 +69,11 @@ public class NotesActivity extends AppCompatActivity {
                 Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LoadData();
     }
 }

@@ -6,8 +6,7 @@ public class Notes {
     private String text;
     private String creator_id;
 
-    public Notes(int id, String title, String text, String creator_id) {
-        this.id = id;
+    public Notes(String title, String text, String creator_id) {
         this.title = title;
         this.text = text;
         this.creator_id = creator_id;

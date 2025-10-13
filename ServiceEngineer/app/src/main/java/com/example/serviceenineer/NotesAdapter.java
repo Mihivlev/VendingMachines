@@ -14,6 +14,16 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteVH> {
     Context context;
     List<Notes> ItemList;
+    interface onNoteListener{
+        void onNoteListener(int id, String title);
+    }
+    public onNoteListener onClickListener;
+
+    public NotesAdapter(Context context1, List<Notes> eventsList, onNoteListener listener) {
+        onClickListener = listener;
+        context = context1;
+        ItemList = eventsList;
+    }
 
     @NonNull
     @Override
@@ -24,8 +34,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteVH> {
 
     @Override
     public void onBindViewHolder(@NonNull NoteVH holder, int position) {
+        Notes notes = ItemList.get(position);
         holder.Title.setText(ItemList.get(position).getTitle());
         holder.Text.setText(ItemList.get(position).getText());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onNoteListener(notes.getId(), notes.getTitle());
+            }
+        });
     }
 
     public void SetList(List<Notes> list){
@@ -35,11 +52,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteVH> {
     @Override
     public int getItemCount() {
         return ItemList.size();
-    }
-
-    public NotesAdapter(Context context1, List<Notes> eventsList) {
-        context = context1;
-        ItemList = eventsList;
     }
 
     public class NoteVH extends  RecyclerView.ViewHolder{

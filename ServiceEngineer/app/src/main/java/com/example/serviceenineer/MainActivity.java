@@ -38,4 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Intent notesActivity = new Intent(this, NotesActivity.class);
         startActivity(notesActivity);
     }
+    public void ToMaintenance(View view){
+        Intent maintenanceActivity = new Intent(this, MaintenanceActivity.class);
+        startActivity(maintenanceActivity);
+    }
 }
