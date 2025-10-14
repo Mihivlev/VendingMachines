@@ -43,10 +43,9 @@ public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceAdapter.
 
     public String FindVA(String id){
         for(int i = 0; i < VAList.size();i++)
-            if (VAList.get(i).getId() == id)
+            if (VAList.get(i).getId().equals(id))
                 return  VAList.get(i).getSerial_number();
         return "Not found";
-        //return "Not found";
     }
 
     @Override
@@ -54,7 +53,7 @@ public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceAdapter.
         return itemList.size();
     }
 
-    public class MaintenanceVH extends RecyclerView.ViewHolder{
+    public static class MaintenanceVH extends RecyclerView.ViewHolder{
         TextView Date;
         TextView VA;
         TextView WorkDescription;

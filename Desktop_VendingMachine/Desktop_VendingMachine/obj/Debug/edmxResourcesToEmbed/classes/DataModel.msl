@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Хранилище DB_VendingMachinesModelContainer" CdmEntityContainer="DB_VendingMachinesEntities">
+    <EntitySetMapping Name="Brones">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Brones">
+        <MappingFragment StoreEntitySet="Brones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="vm_id" ColumnName="vm_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Companies">
       <EntityTypeMapping TypeName="DB_VendingMachinesModel.Companies">
         <MappingFragment StoreEntitySet="Companies">
@@ -14,6 +24,17 @@
         <MappingFragment StoreEntitySet="CriticalThresholdTemplate">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="critical_threshold_template" ColumnName="critical_threshold_template" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deals">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Deals">
+        <MappingFragment StoreEntitySet="Deals">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="is_accept" ColumnName="is_accept" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,6 +64,7 @@
           <ScalarProperty Name="vending_machine_id" ColumnName="vending_machine_id" />
           <ScalarProperty Name="id_employee" ColumnName="id_employee" />
           <ScalarProperty Name="work_description" ColumnName="work_description" />
+          <ScalarProperty Name="is_accept" ColumnName="is_accept" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -51,6 +73,16 @@
         <MappingFragment StoreEntitySet="ModelsMachine">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Model" ColumnName="Model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="DB_VendingMachinesModel.Notes">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="creator_id" ColumnName="creator_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

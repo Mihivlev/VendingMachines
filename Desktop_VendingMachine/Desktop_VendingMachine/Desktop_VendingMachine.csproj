@@ -115,6 +115,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="classes\Brones.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="classes\Companies.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="classes\Deals.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="classes\Events.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -147,6 +153,9 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="classes\ModelsMachine.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="classes\Notes.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="classes\NotificationTemplates.cs">
@@ -353,8 +362,8 @@
   <ItemGroup>
     <Content Include="classes\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.Context.cs</LastGenOutput>
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
     <Content Include="classes\DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

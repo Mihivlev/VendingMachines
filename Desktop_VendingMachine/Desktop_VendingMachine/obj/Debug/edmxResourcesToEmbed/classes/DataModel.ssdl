@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище DB_VendingMachinesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vm_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="Companies">
     <Key>
       <PropertyRef Name="id" />
@@ -13,6 +22,16 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="critical_threshold_template" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deals">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" />
+    <Property Name="end_date" Type="date" Nullable="false" />
+    <Property Name="is_accept" Type="bit" Nullable="false" />
+    <Property Name="user_id" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Events">
     <Key>
@@ -40,6 +59,7 @@
     <Property Name="vending_machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="id_employee" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="work_description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="is_accept" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ModelsMachine">
     <Key>
@@ -47,6 +67,15 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="creator_id" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="NotificationTemplates">
     <Key>
@@ -214,6 +243,44 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="mode" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Brones_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Brones" Type="Self.Brones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Brones">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Brones_VendingMachines">
+    <End Role="VendingMachines" Type="Self.VendingMachines" Multiplicity="1" />
+    <End Role="Brones" Type="Self.Brones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendingMachines">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Brones">
+        <PropertyRef Name="vm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deals_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Deals" Type="Self.Deals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Deals">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Events_VM_Events">
     <End Role="Events" Type="Self.Events" Multiplicity="1" />
     <End Role="Events_VM" Type="Self.Events_VM" Multiplicity="*" />
@@ -261,6 +328,18 @@
       </Principal>
       <Dependent Role="Maintenance">
         <PropertyRef Name="vending_machine_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notes_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="creator_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -549,12 +628,15 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Хранилище DB_VendingMachinesModelContainer">
+    <EntitySet Name="Brones" EntityType="Self.Brones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CriticalThresholdTemplate" EntityType="Self.CriticalThresholdTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events_VM" EntityType="Self.Events_VM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ModelsMachine" EntityType="Self.ModelsMachine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NotificationTemplates" EntityType="Self.NotificationTemplates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Operators" EntityType="Self.Operators" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
@@ -571,6 +653,18 @@
     <EntitySet Name="VendingMachines" EntityType="Self.VendingMachines" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VM_Payments" EntityType="Self.VM_Payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkModes" EntityType="Self.WorkModes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Brones_Users" Association="Self.FK_Brones_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Brones" EntitySet="Brones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Brones_VendingMachines" Association="Self.FK_Brones_VendingMachines">
+      <End Role="VendingMachines" EntitySet="VendingMachines" />
+      <End Role="Brones" EntitySet="Brones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deals_Users" Association="Self.FK_Deals_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Deals" EntitySet="Deals" />
+    </AssociationSet>
     <AssociationSet Name="FK_Events_VM_Events" Association="Self.FK_Events_VM_Events">
       <End Role="Events" EntitySet="Events" />
       <End Role="Events_VM" EntitySet="Events_VM" />
@@ -586,6 +680,10 @@
     <AssociationSet Name="FK_Maintenance_VendingMachines" Association="Self.FK_Maintenance_VendingMachines">
       <End Role="VendingMachines" EntitySet="VendingMachines" />
       <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notes_Users" Association="Self.FK_Notes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Notes" EntitySet="Notes" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_VendingMachines" Association="Self.FK_Products_VendingMachines">
       <End Role="VendingMachines" EntitySet="VendingMachines" />

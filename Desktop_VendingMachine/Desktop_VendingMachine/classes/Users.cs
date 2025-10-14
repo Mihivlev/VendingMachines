@@ -17,7 +17,10 @@ namespace Desktop_VendingMachine.classes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.Brones = new HashSet<Brones>();
+            this.Deals = new HashSet<Deals>();
             this.Maintenance = new HashSet<Maintenance>();
+            this.Notes = new HashSet<Notes>();
             this.VendingMachines = new HashSet<VendingMachines>();
             this.VendingMachines1 = new HashSet<VendingMachines>();
             this.VendingMachines2 = new HashSet<VendingMachines>();
@@ -36,7 +39,13 @@ namespace Desktop_VendingMachine.classes
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Brones> Brones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deals> Deals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Maintenance> Maintenance { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notes> Notes { get; set; }
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendingMachines> VendingMachines { get; set; }

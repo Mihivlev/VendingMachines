@@ -19,11 +19,11 @@ namespace Desktop_VendingMachine
 			//string text = "C:\\prof\\products.json";
 			//FileStream file = new FileStream(text, FileMode.OpenOrCreate);
 			//List<Products> products = JsonSerializer.Deserialize<List<Products>>(file);
-   //         foreach (var item in products)
-   //         {
+			//foreach (var item in products)
+			//{
 			//	StorageClass.machinesEntities.Products.Add(item);
-   //         }
+			//}
 			//StorageClass.machinesEntities.SaveChanges();
-        }
+		}
 	}
 }

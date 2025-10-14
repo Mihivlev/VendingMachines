@@ -1,6 +1,5 @@
 ﻿using Desktop_VendingMachine.classes;
 using System.Linq;
-using System.Numerics;
 using System.Windows.Controls;
 
 namespace Desktop_VendingMachine.Pages

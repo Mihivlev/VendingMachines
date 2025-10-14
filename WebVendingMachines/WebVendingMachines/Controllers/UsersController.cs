@@ -1,19 +1,14 @@
-﻿using Microsoft.Ajax.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebVendingMachines.Models;
 
 namespace WebVendingMachines.Controllers
 {
-    public class UsersController : ApiController
+	public class UsersController : ApiController
     {
         private DB_VendingMachinesEntities db = new DB_VendingMachinesEntities();
 
@@ -23,8 +18,18 @@ namespace WebVendingMachines.Controllers
             return db.Users;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(Users))]
+        [Route("api/Users_apikey={key}")]
+        public IHttpActionResult GetUsersWithKey(string key)
+        {
+            if (key == "123")
+            {
+                return Ok(db.Users);
+            }
+            return BadRequest();
+        }
+
+		// GET: api/Users/5
+		[ResponseType(typeof(Users))]
         public IHttpActionResult GetUsers(string id)
         {
             Users users = db.Users.Find(id);

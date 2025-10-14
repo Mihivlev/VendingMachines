@@ -1,11 +1,7 @@
 ﻿using Desktop_VendingMachine.classes;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace Desktop_VendingMachine.Pages

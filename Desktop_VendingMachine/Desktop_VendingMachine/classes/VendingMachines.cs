@@ -17,6 +17,7 @@ namespace Desktop_VendingMachine.classes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VendingMachines()
         {
+            this.Brones = new HashSet<Brones>();
             this.Events_VM = new HashSet<Events_VM>();
             this.Maintenance = new HashSet<Maintenance>();
             this.Products = new HashSet<Products>();
@@ -57,6 +58,8 @@ namespace Desktop_VendingMachine.classes
         public Nullable<int> kopurs { get; set; }
         public Nullable<int> sdacha { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Brones> Brones { get; set; }
         public virtual Companies Companies { get; set; }
         public virtual CriticalThresholdTemplate CriticalThresholdTemplate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

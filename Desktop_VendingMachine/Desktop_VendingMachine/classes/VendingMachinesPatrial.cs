@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 
 namespace Desktop_VendingMachine.classes
 {
@@ -51,14 +45,14 @@ namespace Desktop_VendingMachine.classes
 				Random rnd = new Random();
 				switch (rnd.Next(5))
 				{
-					case 5:
-						return "/Resources/operators/Signal5.png";
-					case 3:
-						return "/Resources/operators/Signal3.png";
+					case 1:
+						return "/Resources/operators/Signal1.png";
 					case 2:
 						return "/Resources/operators/Signal2.png";
+					case 3:
+						return "/Resources/operators/Signal3.png";
 					default:
-						return "/Resources/operators/Signal1.png";
+						return "/Resources/operators/Signal5.png";
 				}
 			}
 			set { }
