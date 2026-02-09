@@ -10,7 +10,8 @@ namespace Desktop_VendingMachine.classes
 			{
 				if (image != null)
 					return Convert.FromBase64String(image);
-				String way = AppDomain.CurrentDomain.BaseDirectory.ToString().Replace("bin\\Debug\\", "") + "Resources/Logo.png";
+				String way = AppDomain.CurrentDomain.BaseDirectory.ToString()
+					.Replace("bin\\Debug\\", "") + "Resources/Logo.png";
 				return File.ReadAllBytes(way);
 			}
 			set { }

@@ -17,8 +17,7 @@ namespace Desktop_VendingMachine.Pages
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			//Users user = StorageClass.machinesEntities.Users.FirstOrDefault(x => x.email == TBEmail.Text && TBPassword.Password == x.password);
-			Users user = StorageClass.machinesEntities.Users.FirstOrDefault(x => x.email == "gleb_1990@example.com");
+			Users user = StorageClass.machinesEntities.Users.FirstOrDefault(x => x.email == TBEmail.Text && TBPassword.Password == x.password);
 			if (user != null)
 				StorageClass.MainFrame.Navigate(new MainPage(user));
 			else

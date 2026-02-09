@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop_VendingMachine.Pages"
+	  xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" Background="LightGray"
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="MainPage">
@@ -17,7 +18,7 @@
 			<RowDefinition Height="85"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<Grid Background="white" Grid.ColumnSpan="2">
+		<Grid Background="white" Grid.ColumnSpan="2" MouseDown="profileClick">
 			<Image Source="/Resources/Logo.png" HorizontalAlignment="Left"/>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 				<Image Source="{Binding Photo}"/>
@@ -25,7 +26,12 @@
 					<TextBlock Text="{Binding full_name}" Foreground="#1d1d1d"/>
 					<TextBlock Text="{Binding Roles.role}" Foreground="Gray"/>
 				</StackPanel>
-				<Image Source="/Resources/icons/black/angle-down.png" Margin="32" MouseDown="profileClick"/>
+				<MD:PackIcon Name="ProfileDown" Kind="ChevronDown" 
+							 Height="45" Width="45" Margin="5" 
+							 VerticalAlignment="Stretch" MouseDown="profileClick"/>
+				<MD:PackIcon Name="ProfileUP" Kind="ChevronUp" 
+							 Height="45" Width="45" Margin="5" 
+							 VerticalAlignment="Stretch" Visibility="Collapsed" MouseDown="profileClick"/>
 			</StackPanel>
 		</Grid>
 
@@ -47,36 +53,51 @@
 				</Border>
 
 				<StackPanel Grid.Row="1" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" MouseDown="ToMain">
-					<Image Source="/Resources/icons/white/search.png" Margin="10"/>
+					<MD:PackIcon Kind="Search" Height="50" Width="50" Margin="5" Foreground="White" VerticalAlignment="Stretch"/>
 					<TextBlock Text="Главная" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
 				</StackPanel>
 
 				<StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
-					<Image Source="/Resources/icons/white/desktop.png" Margin="10"/>
+					<MD:PackIcon Kind="DesktopWindows" 
+								 Height="50" Width="50" Margin="5" Foreground="White" VerticalAlignment="Stretch"/>
 					<TextBlock Text="Монитор ТА" FontSize="20" Margin="5" Foreground="WhiteSmoke" MouseDown="ToMonitor"/>
 				</StackPanel>
 
 				<StackPanel Grid.Row="3" HorizontalAlignment="Left" Orientation="Horizontal">
-					<Image Source="/Resources/icons/white/file-text.png" Margin="10"/>
+					<MD:PackIcon Kind="FileDocument" 
+								 Height="50" Width="50" Margin="5" Foreground="White" VerticalAlignment="Stretch"/>
 					<TextBlock Text="Детальные отчеты" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
 				</StackPanel>
-				<Image Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="3" HorizontalAlignment="Right"/>
+				<MD:PackIcon Kind="ChevronDown" Height="50" Width="50" Margin="5" Grid.Row="3" 
+							 HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Stretch"/>
 
 				<StackPanel Grid.Row="4" HorizontalAlignment="Left" Orientation="Horizontal">
-					<Image Source="/Resources/icons/white/cart-arrow-down.png" Margin="10"/>
+					<MD:PackIcon Kind="CartArrowDown" 
+								 Height="50" Width="50" Margin="5" 
+								 Foreground="White" VerticalAlignment="Stretch"/>
 					<TextBlock Text="Учет ТМЦ" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
 				</StackPanel>
-				<Image Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="4" HorizontalAlignment="Right"/>
+				<MD:PackIcon Kind="ChevronDown" 
+							 Height="50" Width="50" Margin="5" Grid.Row="4" 
+							 HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Stretch"/>
 
 				<StackPanel Grid.Row="5" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" MouseDown="blockAdmin">
-					<Image Source="/Resources/icons/white/cogs.png" Margin="10"/>
+					<MD:PackIcon Kind="Cogs" Height="50" Width="50" Margin="5 5 0 5" Foreground="White" VerticalAlignment="Stretch"/>
 					<TextBlock Text="Администрирование" FontSize="20" Margin="5" Foreground="WhiteSmoke"/>
 				</StackPanel>
-				<Image x:Name="ImgAdminBlock" Source="/Resources/icons/white/angle-down.png" Margin="10" Grid.Row="5" HorizontalAlignment="Right" MouseDown="blockAdmin"/>
+				<MD:PackIcon x:Name="ABDown" Kind="ChevronDown" 
+							 Height="50" Width="50" Margin="5" Grid.Row="5" 
+							 HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+							 Foreground="White" MouseDown="blockAdmin"/>
+				<MD:PackIcon x:Name="ABUp" Visibility="Collapsed" Kind="ChevronUp" 
+							 Height="50" Width="50" Margin="5" Grid.Row="5" 
+							 HorizontalAlignment="Right" VerticalAlignment="Stretch" 
+							 Foreground="White" MouseDown="blockAdmin"/>
 
-				<Grid Name="BlockAdminGrid" Grid.Row="6" Background="#1a1a1a" Visibility="Hidden">
+				<Grid Name="BlockAdminGrid" Grid.Row="6" Background="#1a1a1a" Visibility="Collapsed">
 					<StackPanel Margin="0 30 0 70" HorizontalAlignment="Center">
-						<TextBlock Text="Торговые автоматы" HorizontalAlignment="Left" FontSize="18" Margin="3" MouseDown="ToVendingMachines" Foreground="WhiteSmoke"/>
+						<TextBlock Text="Торговые автоматы" HorizontalAlignment="Left" FontSize="18" Margin="3" 
+								   MouseDown="ToVendingMachines" Foreground="WhiteSmoke"/>
 						<TextBlock Text="Компании" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
 						<TextBlock Text="Пользователи" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
 						<TextBlock Text="Модемы" HorizontalAlignment="Left" FontSize="18" Margin="3" Foreground="WhiteSmoke"/>
@@ -88,7 +109,8 @@
 
 		<Frame Name="UserFrame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"/>
 
-		<Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="White" Width="370" Visibility="Hidden" Name="profileGrid">
+		<Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" 
+			  Background="White" Width="355" Visibility="Hidden" Name="profileGrid">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="50"/>
 				<RowDefinition Height="50"/>
@@ -98,17 +120,17 @@
 			<Rectangle Fill="Gray" Height="0.5" VerticalAlignment="Top" Margin="10 0 10 0"/>
 
 			<StackPanel Orientation="Horizontal" Margin="10">
-				<Image Source="/Resources/icons/black/address-card-o.png" Margin="5"/>
+				<MD:PackIcon Kind="CardAccountDetailsOutline" Width="22" Height="22" Margin="5" VerticalAlignment="Stretch"/>
 				<TextBlock Text="Мой прифиль" FontSize="15" Foreground="Gray"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
-				<Image Source="/Resources/icons/black/archive.png" Margin="5"/>
+				<MD:PackIcon Kind="Archive" Width="22" Height="22" Margin="5" VerticalAlignment="Stretch"/>
 				<TextBlock Text="Мои сессии" FontSize="15" Foreground="Gray"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="10" Grid.Row="2">
-				<Image Source="/Resources/icons/black/exit.png" Margin="5"/>
+				<MD:PackIcon Kind="PowerStandby" Width="22" Height="22" Margin="5" VerticalAlignment="Stretch"/>
 				<TextBlock Text="Выход" FontSize="15" Foreground="Gray"/>
 			</StackPanel>
 		</Grid>

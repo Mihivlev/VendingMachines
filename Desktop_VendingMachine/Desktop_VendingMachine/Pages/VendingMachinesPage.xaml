@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desktop_VendingMachine.Pages"
-	  xmlns:DM="http://materialdesigninxaml.net/winfx/xaml/themes"
+	  xmlns:MD="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="815" d:DesignWidth="1200" IsVisibleChanged="Page_IsVisibleChanged"
       Title="VendingMachinesPage" Background="LightGray">
@@ -22,7 +22,8 @@
 
 		<Grid Background="#1d1d1d" Grid.ColumnSpan="3">
 			<TextBlock Text="ООО Торговые автоматы" HorizontalAlignment="Left" Margin="10" FontSize="25" Foreground="WhiteSmoke"/>
-			<TextBlock Text="Администрирование / Торговые автоматы" FontSize="18" Foreground="Gray" HorizontalAlignment="Right" Margin="10"/>
+			<TextBlock Text="Администрирование / Торговые автоматы" FontSize="18" Foreground="Gray" 
+					   HorizontalAlignment="Right" Margin="10"/>
 		</Grid>
 
 		<Grid Grid.Row="1" Grid.Column="1" Margin="20" Background="White">
@@ -68,13 +69,13 @@
 				<StackPanel Orientation="Horizontal" Margin="8" HorizontalAlignment="Right" Grid.Column="2">
 					<Button Margin="5" Background="Transparent" BorderThickness="0.7" Click="AddVB">
 						<StackPanel Orientation="Horizontal">
-							<DM:PackIcon Kind="Plus" Margin="5"/>
+							<MD:PackIcon Kind="Plus" Margin="5"/>
 							<TextBlock Text="Добавить" Padding="5"/>
 						</StackPanel>
 					</Button>
 					<Button Margin="5" Background="Transparent" BorderThickness="0.7">
 						<StackPanel Orientation="Horizontal">
-							<DM:PackIcon Kind="Share" Margin="5"/>
+							<MD:PackIcon Kind="Share" Margin="5"/>
 							<TextBlock Text="Экспорт" Padding="5"/>
 						</StackPanel>
 					</Button>
@@ -145,13 +146,13 @@
 			<Rectangle Fill="#1d1d1d" Grid.Row="4" Height="1" VerticalAlignment="Top" Margin="10 0 10 30"/>
 			<StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal" Margin="10">
 				<Button Padding="5" Background="Transparent" Width="30" Click="pagePrev">
-					<DM:PackIcon Kind="ChevronLeft"/>
+					<MD:PackIcon Kind="ChevronLeft"/>
 				</Button>
 				<Border BorderThickness="0.7" BorderBrush="#1d1d1d" Width="30" Background="#00bbff">
 					<TextBlock Name="TBPage" Padding="5" Text="1" Foreground="White"/>
 				</Border>
 				<Button Padding="5" Background="Transparent" Width="30" Click="pageNext">
-					<DM:PackIcon Kind="ChevronRight"/>
+					<MD:PackIcon Kind="ChevronRight"/>
 				</Button>
 			</StackPanel>
 			<TextBlock Name="TBSecondCount" Grid.Row="4" HorizontalAlignment="Left" Margin="10"/>

@@ -20,9 +20,11 @@
 		</Grid.RowDefinitions>
 
 		<Grid Background="#1d1d1d" Grid.ColumnSpan="3">
-			<TextBlock Text="ООО Торговые автоматы" HorizontalAlignment="Left" Margin="10" FontSize="25" Foreground="WhiteSmoke"/>
+			<TextBlock Text="ООО Торговые автоматы" HorizontalAlignment="Left" 
+					   Margin="10" FontSize="25" Foreground="WhiteSmoke"/>
 			<StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-				<TextBlock Text="Администрирование / Торговые автоматы /" FontSize="18" Foreground="Gray" Margin="5"/>
+				<TextBlock Text="Администрирование / Торговые автоматы /" 
+						   FontSize="18" Foreground="Gray" Margin="5"/>
 				<TextBlock Text="Новый ТА" Name="TBTitle" FontSize="18" Foreground="Gray" Margin="5"/>
 			</StackPanel>
 		</Grid>
@@ -46,6 +48,7 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
+			
 			<Grid Background="#efefef" Grid.ColumnSpan="3">
 				<Rectangle Fill="#00bbff" Height="1" VerticalAlignment="Top"/>
 				<TextBlock Text="Создание торгового автомата" Foreground="#00bbff" FontSize="20" Margin="10" HorizontalAlignment="Left"/>
@@ -98,7 +101,8 @@
 
 			<StackPanel Grid.Row="3" Grid.Column="2">
 				<TextBlock Text="Координаты" FontSize="13" Margin="4" HorizontalAlignment="Left"/>
-				<TextBox Name="ICoordinates" Text="{Binding coordinates}" FontSize="13" Margin="4" Background="Transparent"/>
+				<TextBox Name="ICoordinates" Text="{Binding coordinates}" 
+						 FontSize="13" Margin="4" Background="Transparent"/>
 			</StackPanel>
 
 			<StackPanel Grid.Row="4">
@@ -107,13 +111,16 @@
 			</StackPanel>
 
 			<StackPanel Grid.Row="4" Grid.Column="1">
-				<TextBlock Text="Время работы (формат: 08:00 - 22:00) *" FontSize="13" Margin="4" HorizontalAlignment="Left"/>
-				<TextBox Name="IWorkTime" Text="{Binding working_hours}" FontSize="13" Margin="4" Background="Transparent"/>
+				<TextBlock Text="Время работы (формат: 08:00 - 22:00) *" 
+						   FontSize="13" Margin="4" HorizontalAlignment="Left"/>
+				<TextBox Name="IWorkTime" Text="{Binding working_hours}" 
+						 FontSize="13" Margin="4" Background="Transparent"/>
 			</StackPanel>
 
 			<StackPanel Grid.Row="4" Grid.Column="2">
 				<TextBlock Text="Часовой пояс *" FontSize="13" Margin="4" HorizontalAlignment="Left"/>
-				<ComboBox Name="CBTimezone" SelectedItem="{Binding Timezones}" DisplayMemberPath="timezone" FontSize="13" Margin="4"/>
+				<ComboBox Name="CBTimezone" SelectedItem="{Binding Timezones}" 
+						  DisplayMemberPath="timezone" FontSize="13" Margin="4"/>
 			</StackPanel>
 
 			<StackPanel Grid.Row="5">
@@ -155,10 +162,14 @@
 				<TextBlock Text="Техник-оператор" FontSize="13" Margin="4" HorizontalAlignment="Left"/>
 				<Border BorderBrush="#1d1d1d" BorderThickness="0.7" CornerRadius="5" Margin="4">
 					<StackPanel Orientation="Horizontal">
-						<CheckBox Name="Monet" Content="Монетопр." FontSize="13" Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
-						<CheckBox Name="Kopur" Content="Купюропр." FontSize="13" Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
-						<CheckBox Name="Modul" Content="Модуль б/н опл." FontSize="13" Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
-						<CheckBox Name="QR" Content="QR-платежи" FontSize="13" Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
+						<CheckBox Name="Monet" Content="Монетопр." FontSize="13" 
+								  Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
+						<CheckBox Name="Kopur" Content="Купюропр." FontSize="13" 
+								  Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
+						<CheckBox Name="Modul" Content="Модуль б/н опл." FontSize="13" 
+								  Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
+						<CheckBox Name="QR" Content="QR-платежи" FontSize="13" 
+								  Margin="12 4 4 4" Checked="Metod_Chenged" Unchecked="Metod_Chenged"/>
 					</StackPanel>
 				</Border>
 			</StackPanel>

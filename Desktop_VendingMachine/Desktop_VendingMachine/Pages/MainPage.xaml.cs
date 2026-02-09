@@ -1,9 +1,6 @@
 ﻿using Desktop_VendingMachine.classes;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Desktop_VendingMachine.Pages
 {
@@ -28,27 +25,31 @@ namespace Desktop_VendingMachine.Pages
 			Image image = sender as Image;
 			if (profileGrid.Visibility == Visibility.Hidden)
 			{
-				image.Source = new BitmapImage(new Uri("/Resources/icons/black/angle-up.png", UriKind.Relative));
+				ProfileUP.Visibility = Visibility.Visible;
+				ProfileDown.Visibility = Visibility.Collapsed;
 				profileGrid.Visibility = Visibility.Visible;
 			}
 			else
 			{
-				image.Source = new BitmapImage(new Uri("/Resources/icons/black/angle-down.png", UriKind.Relative));
+				ProfileUP.Visibility = Visibility.Collapsed;
+				ProfileDown.Visibility = Visibility.Visible;
 				profileGrid.Visibility = Visibility.Hidden;
 			}
 		}
 
 		private void blockAdmin(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
-			if (BlockAdminGrid.Visibility == Visibility.Hidden)
+			if (BlockAdminGrid.Visibility == Visibility.Collapsed)
 			{
-				ImgAdminBlock.Source = new BitmapImage(new Uri("/Resources/icons/white/angle-up.png", UriKind.Relative));
+				ABDown.Visibility = Visibility.Collapsed;
+				ABUp.Visibility = Visibility.Visible;
 				BlockAdminGrid.Visibility = Visibility.Visible;
 			}
 			else
 			{
-				ImgAdminBlock.Source = new BitmapImage(new Uri("/Resources/icons/white/angle-down.png", UriKind.Relative));
-				BlockAdminGrid.Visibility = Visibility.Hidden;
+				ABDown.Visibility = Visibility.Visible;
+				ABUp.Visibility = Visibility.Collapsed;
+				BlockAdminGrid.Visibility = Visibility.Collapsed;
 			}
 		}
 

@@ -7,7 +7,6 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Vending machines" Height="900" Width="1600" Icon="/Resources/Logo.png">
 	<Grid>
-		<Frame Name="MainFrame" NavigationUIVisibility="Hidden"/><Image/>
-
+		<Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
 	</Grid>
 </Window>
